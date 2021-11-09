@@ -107,6 +107,101 @@ we compile cafes and restaurants near you suitable to house your next endeavor.<
 <br><br><br><br><br><br>
 <div id="findzone">
 <h3>Find your zone!</h3>
+<?php
+$host = "webdev.iyaclasses.com";
+$userid = "omitowoj";
+$userpw = "Acad275_Omitowoju_2813341101";
+$db = "omitowoj_commongrounds";
+
+
+
+$mysql = new mysqli(
+    $host,
+    $userid,
+    $userpw,
+    $db
+);
+
+
+if($mysql->connect_errno) {
+    echo "db connection error : " . $mysql->connect_error;
+    exit();
+}
+?>
+
+<div id="container">
+
+    <h1>Common Grounds Search</h1>
+    <form action="cgresults.php">
+        Cafe Name: <select name="cafename">
+            <option value="ALL">Any Cafe</option>
+            <?php
+
+            $sql = "SELECT * FROM cafe_name";
+
+            $results = $mysql->query($sql);
+
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
+
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['cafename'] . "</option>";
+            }
+            ?>
+            <br>
+            <br>
+        </select><br>
+            Outlet Availability: <select name="outlet">
+
+                <option value="ALL">Any Outlet Availabilities</option>
+                <?php
+
+                $sql = "SELECT * FROM outlet_availability";
+
+                $results = $mysql->query($sql);
+
+                if(!$results) {
+                    echo "SQL problem: " .
+                        $mysql->error ;
+                    exit();
+                }
+
+                while($currentrow = $results->fetch_assoc()) {
+                    echo "<option>" . $currentrow['outlet'] . "</option>";
+                }
+                ?>
+            </select><br>
+            Seating Type: <select name="seatingtype">
+                <option value="ALL">Any Seating Type</option>
+                <?php
+
+                $sql = "SELECT * FROM seating_type";
+
+                $results = $mysql->query($sql);
+
+                if(!$results) {
+                    echo "SQL problem: " .
+                        $mysql->error ;
+                    exit();
+                }
+
+                while($currentrow = $results->fetch_assoc()) {
+                    echo "<option>" . $currentrow['seatingtype'] . "</option>";
+                }
+                ?>
+
+            </select><br>
+            <br>
+
+            <input type="submit">
+    </form>
+
+
+
+
 <form>
     Location:<input type="text" name="location"><br>
     Order Ahead: <input type="checkbox" id="order" name="yes" value="yes"><br>
