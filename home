@@ -74,8 +74,12 @@
     }
     
     #title{
-        width: 50%;
+        width: 500px;
         margin: auto;
+    }
+    
+    #logo{
+        width:100px;
     }
 </style>
 
@@ -84,7 +88,7 @@
 
 <body>
 <div id="nav">
-    <img src="logo.png" id="logo">
+    <div id="logo"><img src="logo.png" id="logo"></div?
     <div id="login">log in</div>
     <div id="signup">sign up</div>
 </div>
