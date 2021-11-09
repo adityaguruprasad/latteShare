@@ -5,6 +5,19 @@
     <title>Common Grounds - Home</title>
  
 <style>
+ #container {
+        padding: 30px;
+        margin-top: 100px;
+        background-color: darkgrey;
+        width: 400px;
+        text-align: left;
+    }
+
+    .label {
+        float:left;
+        clear:both;
+        width: 120px;
+    }
   
     #findzone{
         background-color: #3D9E41;
@@ -106,7 +119,9 @@
 we compile cafes and restaurants near you suitable to house your next endeavor.</p><p>Scroll down to start searching for the optimal grounds, so you can get those productive juices flowing.</p></div>
 <br><br><br><br><br><br>
 <div id="findzone">
+
 <h3>Find your zone!</h3>
+
 <?php
 $host = "webdev.iyaclasses.com";
 $userid = "omitowoj";
@@ -123,15 +138,14 @@ $mysql = new mysqli(
 );
 
 
-if($mysql->connect_errno) {
-    echo "db connection error : " . $mysql->connect_error;
-    exit();
-}
+//if($mysql->connect_errno) {
+    //echo "db connection error : " . $mysql->connect_error;
+    //exit();
+//}
 ?>
 
 <div id="container">
 
-    <h1>Common Grounds Search</h1>
     <form action="cgresults.php">
         Cafe Name: <select name="cafename">
             <option value="ALL">Any Cafe</option>
