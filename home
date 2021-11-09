@@ -131,11 +131,11 @@ body{
     <div id="login">log in</div>
     <div id="signup">sign up</div>
 </div>
-    <div id="title">
-    <img src="cg-title.png">
-    </div>
     
-    <h1>Common Grounds</h1>
+    <img src="cg-title.png" id="title">
+    
+    
+    /*<h1>Common Grounds</h1>*/
     <div id="description">
     <p><span style="color: #DD5F76">Common Grounds</span> takes the work out of finding the perfect workspace for your workflow. Based on user experiences,
 we compile cafes and restaurants near you suitable to house your next endeavor.</p></div>
