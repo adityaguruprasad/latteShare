@@ -134,7 +134,7 @@ body{
     <div id="login">log in</div>
     <div id="signup">sign up</div>
 </div>
-    
+    <br><br><br><br><br>
     <div id="title-box"><img src="cg-title.png" id="title"></div>
     
     <div id="description">
