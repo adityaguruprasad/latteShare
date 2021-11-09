@@ -4,13 +4,13 @@
     <link rel="stylesheet" href="commgr-stylesheet.css">
     <link rel="stylesheet" href="https://use.typekit.net/aod6lef.css">
     <title>Common Grounds - Home</title>
-    @import url('https://fonts.googleapis.com/css2?family=Lekton:wght@700&display=swap');
+ 
+<style>
+   @import url('https://fonts.googleapis.com/css2?family=Lekton:wght@700&display=swap');
 @font-face {
     font-family: NeuzeitGro-Book;
     src: url(NeuzeitSBook.ttf);
 }
-<style>
-
 
 #nav{
     background-color: #DD5F76;
