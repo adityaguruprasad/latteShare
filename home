@@ -89,7 +89,7 @@
     <div id="signup">sign up</div>
 </div>
     <div id="title">
-    <img src="cg-title.png">
+    <img src="cg-title.png" id="title">
     </div>
     
     <h1>Common Grounds</h1>
