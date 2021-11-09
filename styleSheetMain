@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lekton:wght@700&display=swap');
+@font-face {
+    font-family: NeuzeitGro-Book;
+    src: url(NeuzeitSBook.ttf);
+}
+<link rel="stylesheet" href="https://use.typekit.net/aod6lef.css">
+#nav{
+    background-color: #DD5F76;
+    color: white;
+    height: 50px;
+    padding: 20px;
+}
+
+#logo{
+    height: 50px;
+    width: 50px;
+}
+
+h1{
+    font-family: obviously, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 50pt;
+}
+
+h3{
+    font-family: obviously, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25pt;
+}
+
+body{
+    background-color: #FDFAF1;
+    color: #33319F;
+    font-size: 16pt;
+    font-family: NeuzeitGro-Book;
+}
