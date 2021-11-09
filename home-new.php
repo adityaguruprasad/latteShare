@@ -1,3 +1,29 @@
+<?php
+$host = "webdev.iyaclasses.com";
+$userid = "omitowoj";
+$userpw = "Acad275_Omitowoju_2813341101";
+$db = "omitowoj_commongrounds";
+
+
+
+$mysql = new mysqli(
+    $host,
+    $userid,
+    $userpw,
+    $db
+
+    if($mysql->connect_errno) {
+    echo "db connection error : " . $mysql->connect_error;
+    exit();
+}
+);
+
+
+
+?>
+
+
+
 <html>
 <head>
 
@@ -5,13 +31,7 @@
     <title>Common Grounds - Home</title>
 
     <style>
-        #container {
-            padding: 30px;
-            margin-top: 100px;
-            background-color: darkgrey;
-            width: 400px;
-            text-align: left;
-        }
+
 
         .label {
             float:left;
@@ -122,26 +142,7 @@
 
     <h3>Find your zone!</h3>
 
-    <?php
-    $host = "webdev.iyaclasses.com";
-    $userid = "omitowoj";
-    $userpw = "Acad275_Omitowoju_2813341101";
-    $db = "omitowoj_commongrounds";
 
-
-
-    $mysql = new mysqli(
-        $host,
-        $userid,
-        $userpw,
-        $db
-    );
-
-
-
-    ?>
-
-    <div id="container">
 
         <form action="cgresults.php">
             Cafe Name: <select name="cafename">
@@ -230,6 +231,6 @@
             <input type="submit" value="go!">
         </form> -->
 
-    </div>
+
 </body>
 </html>
