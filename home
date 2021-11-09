@@ -118,9 +118,7 @@ body{
         margin: auto;
     }
     
-    #logo{
-        width:50px;
-    }
+   
 </style>
 
 
@@ -134,7 +132,7 @@ body{
     <div id="signup">sign up</div>
 </div>
     <div id="title">
-    <img src="cg-title.png" id="title">
+    <img src="cg-title.png">
     </div>
     
     <h1>Common Grounds</h1>
