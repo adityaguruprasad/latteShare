@@ -114,10 +114,12 @@ body{
     }
     
     #title{
+        display: block;
         width: 50%;
         margin: auto;
     }
     #title-box{
+        display: block;
         width: 100%;
         margin: auto;
     }
