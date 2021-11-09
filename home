@@ -201,7 +201,7 @@ if($mysql->connect_errno) {
 
 
 
-
+<!--
 <form>
     Location:<input type="text" name="location"><br>
     Order Ahead: <input type="checkbox" id="order" name="yes" value="yes"><br>
@@ -217,7 +217,8 @@ if($mysql->connect_errno) {
     </select><br>
     Rewards: <input type="checkbox" id="rewards" name="yes" value="yes"><br>
     <input type="submit" value="go!">
-</form>
+</form> -->
+
 </div>
 </body>
 </html>
