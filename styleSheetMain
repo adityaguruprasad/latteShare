@@ -1,3 +1,6 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 @import url('https://fonts.googleapis.com/css2?family=Lekton:wght@700&display=swap');
 @font-face {
     font-family: NeuzeitGro-Book;
@@ -34,5 +37,5 @@ body{
     background-color: #FDFAF1;
     color: #33319F;
     font-size: 16pt;
-    font-family: NeuzeitGro-Book;
+    font-family: 'Montserrat', sans-serif;
 }
