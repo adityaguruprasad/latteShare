@@ -16,7 +16,7 @@ $mysql = new mysqli(
     if($mysql->connect_errno) {
     echo "db connection error : " . $mysql->connect_error;
     exit();
-}
+        }
 
 
 
