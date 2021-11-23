@@ -1,10 +1,12 @@
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+                                                          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                                                                                                                  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 @import url('https://fonts.googleapis.com/css2?family=Lekton:wght@700&display=swap');
 @font-face {
     font-family: NeuzeitGro-Book;
-     src: url('https://webdev.iyaclasses.com/~mlchen/acad276/1109%20checkpoint%202/NeuzeitSBook.ttf');
+    src: url(../1109 checkpoint 2/NeuzeitSBook.ttf);
 }
-
+<link rel="stylesheet" href="https://use.typekit.net/aod6lef.css">
                                                                  #nav{
                                                                      background-color: #DD5F76;
                                                                      color: white;
@@ -13,7 +15,7 @@
                                                                  }
 
 #logo{
-    height: auto;
+    height: 50px;
     width: 50px;
 }
 
@@ -35,5 +37,5 @@ body{
     background-color: #FDFAF1;
     color: #33319F;
     font-size: 16pt;
-    font-family: NeuzeitGro-Book;
+    font-family: 'Montserrat', sans-serif;
 }
