@@ -186,7 +186,7 @@ is a database service that helps our users find the best cafes around them for t
     <h3>What're you looking for?</h3>
     <div class="container">
         Location:
-        <select name="location" class="textbox">
+        <select name="location" id="location" class="textbox">
             <option value="ALL">Any Location</option>
             <?php
 
@@ -208,7 +208,7 @@ is a database service that helps our users find the best cafes around them for t
         </select>
         <br><br>
         Seating:
-        <select name="seatingtype" class="textbox">
+        <select name="seatingtype" id="seatingtype" class="textbox">
             <option value="ALL">Any Seating Type</option>
             <?php
 
@@ -230,7 +230,7 @@ is a database service that helps our users find the best cafes around them for t
         </select>
         <br><br>
         Ratings:
-        <select name="outlet" class="textbox">
+        <select name="rating" id="rating" class="textbox">
             <option value="ALL">Any Rating</option>
             <?php
 
@@ -252,7 +252,7 @@ is a database service that helps our users find the best cafes around them for t
     </div>
     <div class="container">
         WiFi:
-        <select name="internet" class="textbox">
+        <select name="internet" class="textbox" id="internet">
             <option value="ALL">Any Internet Availability</option>
             <?php
 
@@ -273,11 +273,11 @@ is a database service that helps our users find the best cafes around them for t
         </select>
         <br><br>
         Outlets:
-        <select name="outlet" class="textbox">
+        <select name="outlet" class="textbox" id="outlet">
             <option value="ALL">Any Outlet Availability</option>
             <?php
 
-            $sql = "SELECT * FROM outlet_availability";
+            $sql = "SELECT * FROM  outlet_avaliability ";
 
             $results = $mysql->query($sql);
 
@@ -294,7 +294,7 @@ is a database service that helps our users find the best cafes around them for t
         </select>
         <br><br>
         Rewards:
-        <select name="rewards" class="textbox">
+        <select name="rewardprogram" class="textbox" id="rewardprogram">
             <option value="ALL">Any Rewards</option>
             <?php
 

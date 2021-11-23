@@ -1,6 +1,6 @@
 <?php
 
-if(empty($_REQUEST['cafename'])) {
+if(empty($_REQUEST['location'])) {
     echo "Please go through search page. (or redirect)";
     exit();
 }
@@ -59,14 +59,23 @@ if($mysql->connect_errno) {
 
     $sql = 		"SELECT * FROM cgView WHERE 1=1";
 
-    if($_REQUEST['cafename'] != "ALL") {
-        $sql .= " AND cafename ='" . $_REQUEST["cafename"] . "'";
-    }
     if($_REQUEST['outlet'] != "ALL") {
         $sql .=		" AND outlet = '" . $_REQUEST["outlet"] . "'";
     }
     if($_REQUEST['seatingtype'] != "ALL") {
         $sql .=		" AND seatingtype = '" . $_REQUEST["seatingtype"] . "'";
+    }
+    if($_REQUEST['rating'] != "ALL") {
+        $sql .=		" AND rating = '" . $_REQUEST["rating"] . "'";
+    }
+    if($_REQUEST['internet'] != "ALL") {
+        $sql .=		" AND internet = '" . $_REQUEST["internet"] . "'";
+    }
+    if($_REQUEST['location'] != "ALL") {
+        $sql .=		" AND location = '" . $_REQUEST["location"] . "'";
+    }
+    if($_REQUEST['rewardprogram'] != "ALL") {
+        $sql .=		" AND rewardprogram = '" . $_REQUEST["rewardprogram"] . "'";
     }
 
     $results = $mysql->query($sql);
@@ -84,7 +93,7 @@ if($mysql->connect_errno) {
 
     while($currentrow = $results->fetch_assoc()) {
         echo "<div class='title'> <strong> " . $currentrow['cafename'] . "|"
-            . "</strong>  </a>" . $currentrow['outlet'] . " outlets".
+            . "</strong>  <a>" . $currentrow['outlet'] . " outlets".
            " | ". $currentrow['seatingtype'] ." seating | </a> </div>" .
 
             "<br style='clear:both;'>";
