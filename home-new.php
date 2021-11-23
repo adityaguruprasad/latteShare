@@ -4,23 +4,17 @@ $userid = "omitowoj";
 $userpw = "Acad275_Omitowoju_2813341101";
 $db = "omitowoj_commongrounds";
 
-
-
 $mysql = new mysqli(
     $host,
     $userid,
     $userpw,
     $db
-    );
+);
 
-    if($mysql->connect_errno) {
+if($mysql->connect_errno) {
     echo "db connection error : " . $mysql->connect_error;
     exit();
-        }
-
-
-
-
+}
 ?>
 
 
@@ -32,23 +26,21 @@ $mysql = new mysqli(
     <title>Common Grounds - Home</title>
 
     <style>
-
-
-        .label {
-            float:left;
-            clear:both;
-            width: 120px;
+        h3{
+            text-align: center;
+        }
+        h2{
+            font-family: obviously, sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 30pt;
         }
 
-        #findzone{
-            background-color: #3D9E41;
-            color: #FDFAF1;
-            text-align: center;
-            line-height: 2;
-            padding: 10px;
-            margin-top: 300px;
-            width: 100%;
-            height: 600px;
+        body{
+            background-color: #FDFAF1;
+            color: #33319F;
+            font-size: 16pt;
+            font-family: 'Montserrat', sans-serif;
         }
         form{
             text-align: left;
@@ -66,36 +58,21 @@ $mysql = new mysqli(
             right: 30px;
             top: 25px;
             text-align: center;
-            font-family: 'Lekton', sans-serif;
+            font-family: obviously, sans-serif;
         }
-
-        #signup{
-            width: 80px;
-            height: 18px;
-            padding: 10px;
-            border: 2px solid white;
-            border-radius: 60px;
-            color: white;
-            font-size: 14pt;
-            position: absolute;
-            right: 150px;
-            top: 25px;
-            text-align: center;
-            font-family: 'Lekton', sans-serif;
-        }
-
         h1{
             text-align: center;
             margin-top: 150px;
 
         }
         #description{
-            width: 30%;
+            width: 70%;
             position: absolute;
-            top: 320px;
-            margin-left: 35%;
-            line-height: 1.3;
+            top: 300px;
+            margin-left: 15%;
+            line-height: 1.2;
             text-align: center;
+            font-size: x-large;
         }
         input[type=submit]{
             background-color: #FDFAF1;
@@ -119,7 +96,71 @@ $mysql = new mysqli(
             width: 100%;
             margin: auto;
         }
+        #aboutus{
+            width: 48%;
+            height: 40%;
+            position: absolute;
+            left: 0%;
+            top: 100%;
+            padding: 2%;
+            float: left;
+            color: white;
+            background-color: #3D9E41;
+            text-align: center;
+        }
 
+        #getstarted{
+            width: 48%;
+            height: 40%;
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            padding: 2%;
+            border-top: #33319F;
+            float: left;
+            background-color: #DD5F76;
+            color: white;
+            text-align: center;
+        }
+        form{
+            border-radius: 50px;
+            border: #33319F 2px solid;
+            width: 70%;
+            height: 40%;
+            position: absolute;
+            top: 450px;
+            margin-left: 15%;
+            line-height: 1.1;
+        }
+        .textbox{
+            border: #33319F 1.5px solid;
+            height: 40px;
+            border-radius: 50px;
+            color: #33319F;
+            padding: 2%;
+        }
+        .button{
+            border-radius: 50px;
+            height: 8%;
+            width: 24%;
+            margin-left: 38%;
+            background-color: #33319F;
+            font-size: medium;
+        }
+        .container{
+            padding-left: 5%;
+            float: left;
+            width: 40%;
+        }
+        #submit{
+            border-radius: 50px;
+            height: 8%;
+            width: 24%;
+            background-color: #33319F;
+            font-size: medium;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+        }
     </style>
 
 
@@ -130,109 +171,164 @@ $mysql = new mysqli(
 <div id="nav">
     <div id="logo"><img src="logo.png" id="logo"></div>
     <div id="login">log in</div>
-    <div id="signup">sign up</div>
+
 </div>
 <br><br><br><br><br>
-<div id="title-box"><img src="cg-title.png" id="title"></div>
+<div id="title-box"><img src="https://raw.githubusercontent.com/adityaguruprasad/latteShare/main/cg-title.png" id="title"></div>
 
 <div id="description">
-    <p><span style="color: #DD5F76">Common Grounds</span> takes the work out of finding the perfect workspace for your workflow. Based on user experiences,
-        we compile cafes and restaurants near you suitable to house your next endeavor.</p><p>Scroll down to start searching for the optimal grounds, so you can get those productive juices flowing.</p></div>
-<br><br><br><br><br><br>
-<div id="findzone">
+is a database service that helps our users find the best cafes around them for their workflow. Whether it be having enough
+    sitting, WiFi, or just overall vibes of the space, Common Grounds caters to your needs to find the perfect space for you!
 
-    <h3>Find your zone!</h3>
+</div>
 
+<form action="cgresults.php">
+    <h3>What're you looking for?</h3>
+    <div class="container">
+        Location:
+        <select name="location" class="textbox">
+            <option value="ALL">Any Location</option>
+            <?php
 
+            $sql = "SELECT * FROM location";
 
-        <form action="cgresults.php">
-            Cafe Name: <select name="cafename">
-                <option value="ALL">Any Cafe</option>
-                <?php
+            $results = $mysql->query($sql);
 
-                $sql = "SELECT * FROM cafe_name";
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
 
-                $results = $mysql->query($sql);
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['location'] . "</option>";
+            }
+            ?>
 
-                if(!$results) {
-                    echo "SQL problem: " .
-                        $mysql->error ;
-                    exit();
-                }
+        </select>
+        <br><br>
+        Seating:
+        <select name="seatingtype" class="textbox">
+            <option value="ALL">Any Seating Type</option>
+            <?php
 
-                while($currentrow = $results->fetch_assoc()) {
-                    echo "<option>" . $currentrow['cafename'] . "</option>";
-                }
-                ?>
-                <br>
-                <br>
-            </select><br>
-            Outlet Availability: <select name="outlet">
+            $sql = "SELECT * FROM seating_type";
 
-                <option value="ALL">Any Outlet Availabilities</option>
-                <?php
+            $results = $mysql->query($sql);
 
-                $sql = "SELECT * FROM outlet_availability";
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
 
-                $results = $mysql->query($sql);
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['seatingtype'] . "</option>";
+            }
+            ?>
 
-                if(!$results) {
-                    echo "SQL problem: " .
-                        $mysql->error ;
-                    exit();
-                }
+        </select>
+        <br><br>
+        Ratings:
+        <select name="outlet" class="textbox">
+            <option value="ALL">Any Rating</option>
+            <?php
 
-                while($currentrow = $results->fetch_assoc()) {
-                    echo "<option>" . $currentrow['outlet'] . "</option>";
-                }
-                ?>
-            </select><br>
-            Seating Type: <select name="seatingtype">
-                <option value="ALL">Any Seating Type</option>
-                <?php
+            $sql = "SELECT * FROM ratings";
 
-                $sql = "SELECT * FROM seating_type";
+            $results = $mysql->query($sql);
 
-                $results = $mysql->query($sql);
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
 
-                if(!$results) {
-                    echo "SQL problem: " .
-                        $mysql->error ;
-                    exit();
-                }
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['rating'] . "</option>";
+            }
+            ?>
+        </select>
+    </div>
+    <div class="container">
+        WiFi:
+        <select name="internet" class="textbox">
+            <option value="ALL">Any Internet Availability</option>
+            <?php
 
-                while($currentrow = $results->fetch_assoc()) {
-                    echo "<option>" . $currentrow['seatingtype'] . "</option>";
-                }
-                ?>
+            $sql = "SELECT * FROM internet_availability";
 
-            </select><br>
-            <br>
+            $results = $mysql->query($sql);
 
-            <input type="submit">
-        </form>
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
+
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['internet'] . "</option>";
+            }
+            ?>
+        </select>
+        <br><br>
+        Outlets:
+        <select name="outlet" class="textbox">
+            <option value="ALL">Any Outlet Availability</option>
+            <?php
+
+            $sql = "SELECT * FROM outlet_availability";
+
+            $results = $mysql->query($sql);
+
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
+
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['outlet'] . "</option>";
+            }
+            ?>
+        </select>
+        <br><br>
+        Rewards:
+        <select name="rewards" class="textbox">
+            <option value="ALL">Any Rewards</option>
+            <?php
+
+            $sql = "SELECT * FROM rewards";
+
+            $results = $mysql->query($sql);
+
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
+
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['rewardprogram'] . "</option>";
+            }
+            ?>
+        </select>
+        <br>
+        <input type="submit" id="submit">
     </div>
 
+</form>
 
 
-        <!--
-        <form>
-            Location:<input type="text" name="location"><br>
-            Order Ahead: <input type="checkbox" id="order" name="yes" value="yes"><br>
-            Outlets: <input type="checkbox" id="outlets" name="yes" value="yes"><br>
-            Wifi: <input type="checkbox" id="wifi" name="yes" value="yes"><br>
-            Seating:
-            <select name="seating">
-                <option value="1">1 available</option>
-                <option value="1">2 available</option>
-                <option value="1">4 available</option>
-                <option value="1">6 available</option>
-                <option value="1">more than 6 available</option>
-            </select><br>
-            Rewards: <input type="checkbox" id="rewards" name="yes" value="yes"><br>
-            <input type="submit" value="go!">
-        </form> -->
+<div id="aboutus">
 
+    <h2>MORE ABOUT US:</h2>
+    <div class="button">contact us</div>
+</div>
+<div id="getstarted">
 
+    <h2>GET STARTED:</h2>
+    <div class="button">sign up</div>
+</div>
 </body>
 </html>
