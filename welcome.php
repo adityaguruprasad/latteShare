@@ -371,7 +371,7 @@ include("auth.php");
 
     <br><br>What to learn more? Contact us below.
     <br><br>
-    <div class="button"><a href="about.php"><span style='color: white'>Contact Us</span></a></div>
+    <div class="button"><a href="http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php"><span style='color: white'>Contact Us</span></a></div>
 </div>
 <div id="getstarted">
 
@@ -381,6 +381,13 @@ include("auth.php");
     <br><br>Click below to sign up and get started using our services.
     <br><br>
     <div class="button"><a href="register.php"><span style='color: white'>Sign Up</span></a></div>
+    <br>
+    Are you a coffee shop looking to be added to our database? Click below!
+    <br><br>
+    <div class="button"><a href="http://webdev.iyaclasses.com/~slfinnig/acad276/admin-cg/editing-latteShare.php
+"><span style='color: white'>Admin </span></a></div>
+
+
 </div>
 </body>
 </html>
