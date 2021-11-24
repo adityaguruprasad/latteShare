@@ -56,9 +56,6 @@ session_start();
             margin-left: 40%;
         }
         #login{
-            width: auto;
-            height: 18px;
-            padding: 10px;
             background-color: white;
             border-radius: 60px;
             color: #DD5F76;
@@ -68,6 +65,11 @@ session_start();
             top: 25px;
             text-align: center;
             font-family: obviously, sans-serif;
+            height: 3%;
+            width: 6%;
+            margin: auto;
+            padding-top: 12px;
+            line-height: 2%;
         }
         #logout{
             width: 80px;
@@ -99,7 +101,7 @@ session_start();
         }
         input[type=submit]{
             background-color: #FDFAF1;
-            font-family: 'Lekton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             color: #DD5F76;
             width: 70px;
             height: 40px;
@@ -164,11 +166,13 @@ session_start();
         }
         .button{
             border-radius: 50px;
-            height: 8%;
+            height: 10%;
             width: 24%;
-            margin-left: 38%;
+            margin: auto;
+            padding-top: 16px;
             background-color: #33319F;
             font-size: medium;
+
         }
         .container{
             padding-left: 5%;
@@ -185,7 +189,7 @@ session_start();
             color: white;
         }
         #nav{
-            background-color: #DD5F76;
+            background-color: #33319F;
             color: white;
             height: 50px;
             padding: 20px;
@@ -204,7 +208,7 @@ session_start();
     <div id="login">
         <?php
         if(empty($_SESSION["username"])){
-            echo "<a href='login.php'><span style='color: #DD5F76'>log in</span></a>";
+            echo "<a href='login.php'><span style='color: #33319F'>log in</span></a>";
         }
         else{?>
         Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> <?php }?>
@@ -363,11 +367,11 @@ include("auth.php");
 <div id="aboutus">
 
     <h2>MORE ABOUT US:</h2>
-    Common Grounds is a user-based service that takes both your input and our own research to recommend cafes and restaurants suitable for you to do work. We strive to introduce our users new, fun cafes and restaurants near them.
+    Common Grounds is a user-based service that takes both your input and our own <br> research to recommend cafes and restaurants suitable for you to do work. We  <br> strive to introduce our users new, fun cafes and restaurants near them.
 
     <br><br>What to learn more? Contact us below.
     <br><br>
-    <div class="button"><a href="about.php"><span style='color: white'>contact us</span></a></div>
+    <div class="button"><a href="about.php"><span style='color: white'>Contact Us</span></a></div>
 </div>
 <div id="getstarted">
 
@@ -376,7 +380,7 @@ include("auth.php");
 
     <br><br>Click below to sign up and get started using our services.
     <br><br>
-    <div class="button"><a href="register.php"><span style='color: white'>sign up</span></a></div>
+    <div class="button"><a href="register.php"><span style='color: white'>Sign Up</span></a></div>
 </div>
 </body>
 </html>
