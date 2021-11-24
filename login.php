@@ -137,8 +137,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <div id="login">
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
+    sample user: mel
+    <br>
+    sample password: melody
 
-        <?php 
+
+    <?php
         if(!empty($login_err)){
             echo '<div class="alert alert-danger">' . $login_err . '</div>';
         }        
@@ -146,6 +150,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
+                <br>
                 <label>Username</label>
                 <input type="text" id="textbox2" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>

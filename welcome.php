@@ -174,6 +174,20 @@ session_start();
             font-size: medium;
 
         }
+
+        .aboutbutton{
+            border-radius: 50px;
+            height: 10%;
+            width: 24%;
+            padding-top: 16px;
+            background-color: #33319F;
+            font-size: medium;
+            margin-top: 0%;
+            margin-bottom:%;
+            margin-left: 10%;
+
+        }
+
         .container{
             padding-left: 5%;
             float: left;
@@ -194,12 +208,24 @@ session_start();
             height: 50px;
             padding: 20px;
         }
+        .menu-item{
+            padding-top: 15px;
+            font-size: 12pt;
+            margin-left: 15px;
+            margin-right: 15pt;
+            float: left;
+            display: block;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
 <div id="nav">
-    <div id="logo"><img src="logo.png" id="logo"></div>
+    <div id="logo"><span style='float: left'><img src="logo.png" id="logo"></span></div>
+    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php'> About Us</a> </div>
+    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/register.php'> Sign Up </a> </div>
+
     <?php
     if(!empty($_SESSION["username"])){
         echo "<div id='logout'> <a href='logout.php'> log out</a></div>";
