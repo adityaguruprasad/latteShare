@@ -254,12 +254,45 @@ include("auth.php");
         "</strong> results.</em>";
     echo "<br><br>";
 
+    if(empty($_REQUEST["start"]))
+    { $start=1; }
+    else
+    { $start = $_REQUEST["start"]; }
+
+    $end = $start + 3;
+
+    if ($results->num_rows < $end)
+    { $end = $results->num_rows; }
+
+    $counter = $start;
+    $results->data_seek($start-1);
+
+        $searchstring = "&genre=" . $_REQUEST["genre"] .
+            "&cafename=" . $_REQUEST["cafename"] .
+            "&outlet=" . $_REQUEST["outlet"] .
+            "&seatingtype=" . $_REQUEST["seatingtype"] ;
+            
+        echo "<hr>" . $searchstring . "<hr>" ;
+
+
+
+    echo "<a href='results.php?start=" . ($start-3) . $searchstring .
+        "'>Previous Records</a> | " .
+        "<a href='results.php?start=" . ($start+3)  . $searchstring .
+        "'>Next Records</a> <br><br>";
+
+
+
     while($currentrow = $results->fetch_assoc()) {
-        echo "<div class='title'> <strong> " . $currentrow['cafename'] . " |"
+        echo $counter . ")" . "<div class='title'> <strong> " . $currentrow['cafename'] . " |"
             . "</strong>  <a>" . $currentrow['outlet'] . " outlets".
            " | ". $currentrow['seatingtype'] ." seating | </a> </div>" .
 
             "<br style='clear:both;'>";
+            if($counter==$end)
+            { break; }
+
+            $counter++;
 
     }
     ?>

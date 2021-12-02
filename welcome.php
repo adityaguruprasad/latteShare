@@ -217,6 +217,12 @@ session_start();
             display: block;
             color: white;
         }
+        img{
+            width: 30%;
+            display: block;
+            margin: auto;
+
+        }
     </style>
 </head>
 
@@ -225,6 +231,9 @@ session_start();
     <div id="logo"><span style='float: left'><img src="logo.png" id="logo"></span></div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php'> About Us</a> </div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/register.php'> Sign Up </a> </div>
+    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/why-us-cg/why-us.php'> Why Us? </a> </div>
+    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/daily-read-cg/daily-read.php'> Daily Read </a> </div>
+    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/topcafes.php'>Top Cafes </a> </div>
 
     <?php
     if(!empty($_SESSION["username"])){
@@ -416,4 +425,13 @@ include("auth.php");
 
 </div>
 </body>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF0NKREBNT"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PF0NKREBNT');
+</script>
 </html>
