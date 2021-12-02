@@ -254,37 +254,37 @@ include("auth.php");
         "</strong> results.</em>";
     echo "<br><br>";
 
-    if(empty($_REQUEST["start"]))
-    { $start=1; }
-    else
-    { $start = $_REQUEST["start"]; }
 
-    $end = $start + 3;
+    if(empty($_REQUEST["start"])) {
+        $start=1;
+    }
+    else {
+        $start = $_REQUEST["start"];
+    }
 
-    if ($results->num_rows < $end)
-    { $end = $results->num_rows; }
+    $end = $start + 4;
+
+    if ($results->num_rows < $end) {
+        $end = $results->num_rows;
+    }
 
     $counter = $start;
+
     $results->data_seek($start-1);
 
-        $searchstring = "&genre=" . $_REQUEST["genre"] .
-            "&cafename=" . $_REQUEST["cafename"] .
+
+    $searchstring = "&location=" . $_REQUEST["location"] .
+        "&seatingtype=" . $_REQUEST["seatingtype"] .
+         "&rating=" . $_REQUEST["rating"] .
+            "&internet=" . $_REQUEST["internet"] .
             "&outlet=" . $_REQUEST["outlet"] .
-            "&seatingtype=" . $_REQUEST["seatingtype"] ;
-            
-        echo "<hr>" . $searchstring . "<hr>" ;
+         "&rewardprogram=" . $_REQUEST["rewardprogram"] ;
 
-
-
-    echo "<a href='results.php?start=" . ($start-3) . $searchstring .
-        "'>Previous Records</a> | " .
-        "<a href='results.php?start=" . ($start+3)  . $searchstring .
-        "'>Next Records</a> <br><br>";
-
+    //    echo "<hr>" . $searchstring . "<hr>";
 
 
     while($currentrow = $results->fetch_assoc()) {
-        echo $counter . ")" . "<div class='title'> <strong> " . $currentrow['cafename'] . " |"
+        echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . " |"
             . "</strong>  <a>" . $currentrow['outlet'] . " outlets".
            " | ". $currentrow['seatingtype'] ." seating | </a> </div>" .
 
@@ -293,8 +293,22 @@ include("auth.php");
             { break; }
 
             $counter++;
-
     }
+
+
+    if($start != 1) {
+        echo "<a href='cgresults.php?start=" . ($start - 5) .
+            $searchstring .
+            "'>Previous Records</a> | ";
+    }
+    if($end < $results->num_rows) {
+        echo "<a href='cgresults.php?start=" . ($start + 5) .
+            $searchstring .
+            "'>Next Records</a>";
+    }
+    echo "<br><br>";
+
+
     ?>
 
 </div>
