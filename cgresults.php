@@ -220,16 +220,13 @@ include("auth.php");
 
     <?php
 
-    $sql = 		"SELECT * FROM cgView WHERE 1=1";
+    $sql = 		"SELECT * FROM cgView2 WHERE 1=1";
 
     if($_REQUEST['outlet'] != "ALL") {
         $sql .=		" AND outlet = '" . $_REQUEST["outlet"] . "'";
     }
     if($_REQUEST['seatingtype'] != "ALL") {
         $sql .=		" AND seatingtype = '" . $_REQUEST["seatingtype"] . "'";
-    }
-    if($_REQUEST['rating'] != "ALL") {
-        $sql .=		" AND rating = '" . $_REQUEST["rating"] . "'";
     }
     if($_REQUEST['internet'] != "ALL") {
         $sql .=		" AND internet = '" . $_REQUEST["internet"] . "'";

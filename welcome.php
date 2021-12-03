@@ -307,27 +307,6 @@ include("auth.php");
             ?>
 
         </select>
-        <br><br>
-        Ratings:
-        <select name="rating" class="textbox" id="rating">
-            <option value="ALL">Any Rating</option>
-            <?php
-
-            $sql = "SELECT * FROM ratings";
-
-            $results = $mysql->query($sql);
-
-            if(!$results) {
-                echo "SQL problem: " .
-                    $mysql->error ;
-                exit();
-            }
-
-            while($currentrow = $results->fetch_assoc()) {
-                echo "<option>" . $currentrow['rating'] . "</option>";
-            }
-            ?>
-        </select>
     </div>
     <div class="container">
         WiFi:
