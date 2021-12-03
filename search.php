@@ -16,7 +16,6 @@ if($mysql->connect_errno) {
     exit();
 }
 ?>
-
 <?php
 // Initialize the session
 session_start();
@@ -127,7 +126,7 @@ session_start();
             height: 40%;
             position: absolute;
             left: 0%;
-            top: 80%;
+            top: 100%;
             padding: 2%;
             float: left;
             color: white;
@@ -140,7 +139,7 @@ session_start();
             height: 40%;
             position: absolute;
             left: 50%;
-            top: 80%;
+            top: 100%;
             padding: 2%;
             border-top: #33319F;
             float: left;
@@ -154,7 +153,7 @@ session_start();
             width: 70%;
             height: 40%;
             position: absolute;
-            top: 450px;
+            top: 250px;
             margin-left: 15%;
             line-height: 1.1;
         }
@@ -172,17 +171,6 @@ session_start();
             margin: auto;
             padding-top: 16px;
             background-color: #33319F;
-            font-size: medium;
-            text-align: center;
-        }
-
-        .button2{
-            border-radius: 50px;
-            border: #33319F 2px solid;
-            height: 4%;
-            width: 10%;
-            margin: auto;
-            padding-top: 10px;
             font-size: medium;
             text-align: center;
         }
@@ -244,10 +232,9 @@ session_start();
         #footer {
             background-color: #33319F;
             color: white;
-            width: 98%;
             height: 100px;
-            padding: 40px;
-            margin-top: 28%;
+            padding: 20px;
+            margin-top: 56%;
             text-align: center;
         }
     </style>
@@ -273,56 +260,119 @@ session_start();
             Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> <?php }?>
     </div>
 </div>
-<br><br><br>
-<?php
-include("auth.php");
-?>
-<div id="title-box"><img src="https://raw.githubusercontent.com/adityaguruprasad/latteShare/main/cg-title.png" id="title"></div>
+<h2>Search</h2>
+<form action="cgresults.php">
+    <h3>What're you looking for?</h3>
+    <div class="container">
+        Location:
+        <select name="location" class="textbox" id="location">
+            <option value="ALL">Any Location</option>
+            <?php
 
-<div id="description">
-    is a database service that helps our users find the best cafes around them for their workflow. Whether it be having enough
-    sitting, WiFi, or just overall vibes of the space, Common Grounds caters to your needs to find the perfect space for you!
+            $sql = "SELECT * FROM location";
 
-</div>
+            $results = $mysql->query($sql);
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
 
-<div class="button2"><a href="http://webdev.iyaclasses.com/~abramsa/acad276/latteShare-main/search.php"><span style='color: #33319F'>Search</span></a></div>
-<br>
-<div class="button2"><a href="http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php"><span style='color: #33319F'>Explore</span></a></div>
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['location'] . "</option>";
+            }
+            ?>
 
-<div id="aboutus">
+        </select>
+        <br><br>
+        Seating:
+        <select name="seatingtype" class="textbox" id="seatingtype">
+            <option value="ALL">Any Seating Type</option>
+            <?php
 
-    <h2>MORE ABOUT US:</h2>
-    Common Grounds is a user-based service that takes both your input and our own <br> research to recommend cafes and restaurants suitable for you to do work. We  <br> strive to introduce our users new, fun cafes and restaurants near them.
+            $sql = "SELECT * FROM seating_type";
 
-    <br><br>What to learn more? Contact us below.
-    <br><br>
-    <div class="button"><a href="http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php"><span style='color: white'>Contact Us</span></a></div>
-</div>
-<div id="getstarted">
+            $results = $mysql->query($sql);
 
-    <h2>GET STARTED:</h2>
-    Excited by our service? Signing up is easy and quick. Before you know it you will be exploring all the cafes near you!
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
 
-    <br><br>Click below to sign up and get started using our services.
-    <br><br>
-    <div class="button"><a href="register.php"><span style='color: white'>Sign Up</span></a></div>
-</div>
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['seatingtype'] . "</option>";
+            }
+            ?>
 
+        </select>
+    </div>
+    <div class="container">
+        WiFi:
+        <select name="internet" class="textbox"  id="internet">
+            <option value="ALL">Any Internet Availability</option>
+            <?php
 
-<div  id="footer">
-    Are you a coffee shop looking to be added to our database? Click below!
-    <br><br>
-    <div class="adminbutton"><a href="http://webdev.iyaclasses.com/~slfinnig/acad276/admin-cg/editing-latteShare.php"><span style='color: #33319F'>Admin</span></a>
-</div>
-</div>
-</body>
-</html>
+            $sql = "SELECT * FROM internet_availability";
+
+            $results = $mysql->query($sql);
+
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
+
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['internet'] . "</option>";
+            }
+            ?>
+        </select>
+        <br><br>
+        Outlets:
+        <select name="outlet" class="textbox" id="outlet">
+            <option value="ALL">Any Outlet Availability</option>
+            <?php
+
+            $sql = "SELECT * FROM outlet_availability";
+
+            $results = $mysql->query($sql);
+
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
+
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['outlet'] . "</option>";
+            }
+            ?>
+        </select>
+        <br><br>
+        Rewards:
+        <select name="rewardprogram" class="textbox" id="rewardprogram">
+            <option value="ALL">Any Rewards</option>
+            <?php
+
+            $sql = "SELECT * FROM rewards";
+
+            $results = $mysql->query($sql);
+
+            if(!$results) {
+                echo "SQL problem: " .
+                    $mysql->error ;
+                exit();
+            }
+
+            while($currentrow = $results->fetch_assoc()) {
+                echo "<option>" . $currentrow['rewardprogram'] . "</option>";
+            }
+            ?>
+        </select>
+        <br>
+        <input type="submit" id="submit">
+    </div>
+
+</form>
