@@ -275,7 +275,7 @@ include("auth.php");
          "&rating=" . $_REQUEST["rating"] .
             "&internet=" . $_REQUEST["internet"] .
             "&outlet=" . $_REQUEST["outlet"] .
-         "&rewardprogram=" . $_REQUEST["rewardprogram"] ;
+         "&rewardprogram=" . $_REQUEST["rewardprogram"]  ;
 
     //    echo "<hr>" . $searchstring . "<hr>";
 
@@ -283,8 +283,8 @@ include("auth.php");
     while($currentrow = $results->fetch_assoc()) {
         echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . " |"
             . "</strong>  <a>" . $currentrow['outlet'] . " outlets".
-           " | ". $currentrow['seatingtype'] ." seating | </a> </div>" .
-
+           " | ". $currentrow['seatingtype'] ." seating  ".
+        "<form><input type='submit' value='like' id='like'></form>" .
             "<br style='clear:both;'>";
             if($counter==$end)
             { break; }
