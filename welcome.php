@@ -256,9 +256,13 @@ session_start();
 <body>
 <div id="nav">
     <div id="logo"><span style='float: left'><img src="logo.png" id="logo"></span></div>
-    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php'> About Us</a> </div>
-    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/register.php'> Sign Up </a> </div>
+        <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php'> About Us</a> </div>
+        <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/register.php'> Sign Up </a> </div>
+        <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/why-us-cg/why-us.php'> Why Us? </a> </div>
+        <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/daily-read-cg/daily-read.php'> Daily Read </a> </div>
+        <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/topcafes.php'>Top Cafes </a> </div>
 
+    </div>
     <?php
     if(!empty($_SESSION["username"])){
         echo "<div id='logout'> <a href='logout.php'> log out</a></div>";
@@ -314,7 +318,7 @@ include("auth.php");
 
     <br><br>Click below to sign up and get started using our services.
     <br><br>
-    <div class="button"><a href="register.php"><span style='color: white'>Sign Up</span></a></div>
+    <div class="button"><a href="http://webdev.iyaclasses.com/~mlchen/acad276/test/register.php"><span style='color: white'>Sign Up</span></a></div>
 </div>
 
 
@@ -325,4 +329,15 @@ include("auth.php");
 </div>
 </div>
 </body>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF0NKREBNT"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PF0NKREBNT');
+</script>
+</html>
 </html>
