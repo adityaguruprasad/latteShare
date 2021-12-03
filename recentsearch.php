@@ -1,14 +1,16 @@
 <?php
+// Initialize the session
+session_start();
 
-if(empty($_REQUEST['location'])) {
-    echo "Please go through search page. (or redirect)";
-    exit();
-}
+// Check if the user is logged in, if not then redirect him to login page
+
+?>
+<?php
 
 $host = "webdev.iyaclasses.com";
-$userid = "omitowoj";
-$userpw = "Acad275_Omitowoju_2813341101";
-$db = "omitowoj_commongrounds";
+$userid = "mlchen";
+$userpw = "Acad275_Chen_7491505710";
+$db = "mlchen_commonGrounds";
 
 
 
@@ -23,8 +25,6 @@ if($mysql->connect_errno) {
     echo "db connection error : " . $mysql->connect_error;
     exit();
 }
-
-
 
 ?>
 <html>
@@ -194,22 +194,20 @@ if($mysql->connect_errno) {
             height: 50px;
             padding: 20px;
         }
-
-
     </style>
 </head>
 <body>
 <div id="nav">
     <div id="logo"><img src="logo.png" id="logo"></div>
     <?php
-    if(!empty($_SESSION["username"])){
-        echo "<div id='logout'> <a href='logout.php'> log out</a></div>";
+    if(!empty($_SESSION['user']['username'])){
+        echo "<div id='logout'> <a href='../../Downloads/test%202/logout.php'> log out</a></div>";
     }
     ?>
     <div id="login">
         <?php
-        if(empty($_SESSION["username"])){
-            echo "<a href='login.php'><span style='color: #33319F'>log in</span></a>";
+        if(empty($_SESSION['user']['username'])){
+            echo "<a href='../../Downloads/test%202/login.php'><span style='color: #33319F'>log in</span></a>";
         }
         else{?>
             Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> <?php }?>
@@ -220,58 +218,54 @@ include("auth.php");
 ?>
 
 <div id="container">
-    <h1> Search results <br> <div class="button"><a href="welcome.php"><span style='color: white'>Search Again</span></a></div><hr></h1>
+    <h1> Search results <br> <div class="button"><a href="index.php"><span style='color: white'>Search Again</span></a></div><hr></h1>
 
     <?php
+    $temp1 = "SELECT outlet FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+    $outletSql = $mysql->query($temp1);
+    while($currentrow = mysqli_fetch_array($outletSql)) {
+        $outlet = $currentrow['outlet'];
+    }
+    $temp2 = "SELECT seatingtype FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+    $seatingSql = $mysql->query($temp2);
+    while($currentrow = mysqli_fetch_array($seatingSql)) {
+        $seating = $currentrow['seatingtype'];
+    }
+    $temp = "SELECT internet FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+    $internetSql = $mysql->query($temp);
+    while($currentrow = mysqli_fetch_array($internetSql)) {
+        $internet = $currentrow['internet'];
+    }
+    $temp = "SELECT location FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+    $locationSql = $mysql->query($temp);
+    while($currentrow = mysqli_fetch_array($locationSql)) {
+        $location = $currentrow['location'];
+    }
+    $temp = "SELECT rewardprogram FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+    $rewardSql = $mysql->query($temp);
+    while($currentrow = mysqli_fetch_array($rewardSql)) {
+        $reward = $currentrow['rewardprogram'];
+    }
 
-    $sql = 		"SELECT * FROM cgView2 WHERE 1=1";
-
-    if($_REQUEST['outlet'] != "ALL") {
-        $sql .=		" AND outlet = '" . $_REQUEST["outlet"] . "'";
+    $sql = "SELECT * FROM cgView2 WHERE 1=1";
+    if($outlet != "ALL") {
+        $sql .=		" AND outlet = '" . $outlet . "'";
     }
-    if($_REQUEST['seatingtype'] != "ALL") {
-        $sql .=		" AND seatingtype = '" . $_REQUEST["seatingtype"] . "'";
+    if($seating != "ALL") {
+        $sql .=		" AND seatingtype = '" . $seating . "'";
     }
-    if($_REQUEST['internet'] != "ALL") {
-        $sql .=		" AND internet = '" . $_REQUEST["internet"] . "'";
+    if($internet != "ALL") {
+        $sql .=		" AND internet = '" . $internet . "'";
     }
-    if($_REQUEST['location'] != "ALL") {
-        $sql .=		" AND location = '" . $_REQUEST["location"] . "'";
+    if($location != "ALL") {
+        $sql .=		" AND location = '" . $location . "'";
     }
-    if($_REQUEST['rewardprogram'] != "ALL") {
-        $sql .=		" AND rewardprogram = '" . $_REQUEST["rewardprogram"] . "'";
+    if($reward != "ALL") {
+        $sql .=		" AND rewardprogram = '" . $reward . "'";
     }
-
+    echo "In your most recent search, you searched for ".$outlet." outlet types, ".$seating." seating types, ".$internet.
+    " Internet availability, ".$location. " locations, and ".$reward." reward programs. Here are your results: <br><br>";
     $results = $mysql->query($sql);
-
-    if (isset($_POST['liked'])) {
-        $cafe_id = $_POST['cafe_id'];
-        $results = $mysql->query($sql);
-//$results = mysql($db, "SELECT * FROM cafelist WHERE id=$cafe_id");
-        $currentrow = $results->fetch_assoc();
-        $n = $currentrow['likes'];
-
-//mysqli_query($con, "INSERT INTO cafelist (likes) VALUES (1)");
-        mysql($db, "UPDATE cafelist SET likes=$n+1 WHERE id=$cafe_id");
-
-    echo $n+1;
-    exit();
-}
-    //$cafe_id = $_REQUEST['cafe_id'];
-    $sql = "SELECT * FROM cafelist WHERE" . $_REQUEST['cafe_id'] . " = cafe_id";
-    //if (isset($_POST['unliked'])) {
-
-    $results = $mysql->query($sql);
-
-    $currentrow = $results->fetch_assoc();
-    $n = $currentrow['likes'];
-
-    // mysqli_query($con, "DELETE FROM likes WHERE cafe_id=$cafe_id AND userid=1");
-    //mysqli_query($con, "UPDATE posts SET likes=$n-1 WHERE id=$postid");
-
-    // echo $n-1;
-    // exit();
-    //}
 
     if(!$results) {
         echo "<hr>Your SQL:<br> " . $sql . "<br><br>";
@@ -305,10 +299,10 @@ include("auth.php");
 
     $searchstring = "&location=" . $_REQUEST["location"] .
         "&seatingtype=" . $_REQUEST["seatingtype"] .
-         "&rating=" . $_REQUEST["rating"] .
-            "&internet=" . $_REQUEST["internet"] .
-            "&outlet=" . $_REQUEST["outlet"] .
-         "&rewardprogram=" . $_REQUEST["rewardprogram"]  ;
+        "&rating=" . $_REQUEST["rating"] .
+        "&internet=" . $_REQUEST["internet"] .
+        "&outlet=" . $_REQUEST["outlet"] .
+        "&rewardprogram=" . $_REQUEST["rewardprogram"] ;
 
     //    echo "<hr>" . $searchstring . "<hr>";
 
@@ -316,33 +310,15 @@ include("auth.php");
     while($currentrow = $results->fetch_assoc()) {
         echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . " |"
             . "</strong>  <a>" . $currentrow['outlet'] . " outlets".
-           " | ". $currentrow['seatingtype'] ." seating | " . "<span class='like fa fa-thumbs-o-up' data-id='" .  $currentrow['id'] . "'></span>" .
+            " | ". $currentrow['seatingtype'] ." seating | </a> </div>" .
 
-    "<span class=likes_count>" . $currentrow['likes'] . "likes</span>" .
+            "<br style='clear:both;'>";
+        if($counter==$end)
+        { break; }
 
-    "<br style='clear:both;'>";
-    if($counter==$end)
-    { break; }
+        $counter++;
+    }
 
-    $counter++; }
-   ?>
-<!--determine if user has already liked this post
-           // $results = mysqli_query($db, "SELECT * FROM likes WHERE userid=1 AND postid=".$row['id']."");
-
-    //if (mysqli_num_rows($results) == 1 ):
-        user already likes post -->
-        <!--<span class="unlike fa fa-thumbs-up" data-id="<?php //echo $row['id']; ?>"></span>
-        <span class="like hide fa fa-thumbs-o-up" data-id="<?php //echo $row['id']; ?>"></span>-->
-    <?php ?>
-        <!-- user has not yet liked post -->
-
-        <!--<span class="unlike hide fa fa-thumbs-up" data-id="<?//php echo $row['id']; ?>"></span>-->
-
-    <?php //endif ?>
-
-
-
-<?php
 
     if($start != 1) {
         echo "<a href='cgresults.php?start=" . ($start - 5) .
@@ -354,10 +330,11 @@ include("auth.php");
             $searchstring .
             "'>Next Records</a>";
     }
+    echo "<br><br>";
+
 
     ?>
 
 </div>
 
-</body>
-</html>
+</body></html>
