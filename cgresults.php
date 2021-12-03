@@ -194,9 +194,29 @@ if($mysql->connect_errno) {
             height: 50px;
             padding: 20px;
         }
+        body {
+            padding-top: 100px;
+        }
 
+        .post {
+            width: 30%;
+            margin: 10px auto;
+            border: 1px solid #cbcbcb;
+            padding: 5px 10px 0px 10px;
+        }
+        .like, .unlike, .likes_count {
+            color: blue;
+        }
+        .hide {
+            display: none;
+        }
+        .fa-thumbs-up, .fa-thumbs-o-up {
+            transform: rotateY(-180deg);
+            font-size: 1.3em;
+        }
 
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
 <div id="nav">
@@ -244,27 +264,27 @@ include("auth.php");
 
     $results = $mysql->query($sql);
 
-    if (isset($_POST['liked'])) {
-        $cafe_id = $_POST['cafe_id'];
+    if (isset($_REQUEST['liked'])) {
+        $cafe_id = $_REQUEST['cafe_id'];
         $results = $mysql->query($sql);
 //$results = mysql($db, "SELECT * FROM cafelist WHERE id=$cafe_id");
         $currentrow = $results->fetch_assoc();
         $n = $currentrow['likes'];
 
 //mysqli_query($con, "INSERT INTO cafelist (likes) VALUES (1)");
-        mysql($db, "UPDATE cafelist SET likes=$n+1 WHERE id=$cafe_id");
+        sql($db, "UPDATE cafelist SET likes=$n+1 WHERE id=$cafe_id");
 
-    echo $n+1;
-    exit();
-}
+            echo $n+1;
+            exit();
+       }
     //$cafe_id = $_REQUEST['cafe_id'];
-    $sql = "SELECT * FROM cafelist WHERE" . $_REQUEST['cafe_id'] . " = cafe_id";
+    //$sql = "SELECT * FROM cafelist WHERE" . $_REQUEST['cafe_id'] . " = cafe_id";
     //if (isset($_POST['unliked'])) {
 
-    $results = $mysql->query($sql);
+   // $results = $mysql->query($sql);
 
-    $currentrow = $results->fetch_assoc();
-    $n = $currentrow['likes'];
+    //$currentrow = $results->fetch_assoc();
+  //  $n = $currentrow['likes'];
 
     // mysqli_query($con, "DELETE FROM likes WHERE cafe_id=$cafe_id AND userid=1");
     //mysqli_query($con, "UPDATE posts SET likes=$n-1 WHERE id=$postid");
@@ -356,7 +376,34 @@ include("auth.php");
     }
 
     ?>
+    <script src="http://iyawebdev.com/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            // when the user clicks on like
+            $('.like').on('click', function(){
+                var cafe_id = $(this).data('clicked', true);
+                $post = $(this);
 
+                if($('#element').data('clicked')) {
+                    alert('yes');
+                }
+
+                $.ajax({
+                    url: 'cgresults.php',
+                    type: 'post',
+                    data: {
+                        'liked': 1,
+                        'cafe_id': cafe_id
+                    },
+                    success: function(response){
+                        $post.parent().find('span.likes_count').text(response + " likes");
+                        $post.addClass('hide');
+                        $post.siblings().removeClass('hide');
+                    }
+                });
+            });
+
+        });
 </div>
 
 </body>
