@@ -33,9 +33,6 @@ $userid = $_SESSION['user']['username'];
     <title>Common Grounds - Home</title>
 
     <style>
-        a:visited{
-            color: white;
-        }
         h3{
             text-align: center;
         }
@@ -69,8 +66,8 @@ $userid = $_SESSION['user']['username'];
             height: 3%;
             width: 6%;
             margin: auto;
-            padding-top: 12px;
-            line-height: 2%;
+            padding-top: 20px;
+            line-height: 3%;
         }
         #logout{
             width: 80px;
@@ -123,12 +120,13 @@ $userid = $_SESSION['user']['username'];
             margin: auto;
         }
         #aboutus{
-            width: 48%;
+            width: 50%;
             height: 40%;
             position: absolute;
             left: 0%;
             top: 80%;
-            padding: 2%;
+            margin: 0px;
+            padding: 0px;
             float: left;
             color: white;
             background-color: #3D9E41;
@@ -136,12 +134,13 @@ $userid = $_SESSION['user']['username'];
         }
 
         #getstarted{
-            width: 48%;
+            width: 50%;
             height: 40%;
             position: absolute;
             left: 50%;
+            margin: 0px;
+            padding: 0px;
             top: 80%;
-            padding: 2%;
             border-top: #33319F;
             float: left;
             background-color: #DD5F76;
@@ -157,13 +156,6 @@ $userid = $_SESSION['user']['username'];
             top: 450px;
             margin-left: 15%;
             line-height: 1.1;
-        }
-        .textbox{
-            border: #33319F 1.5px solid;
-            height: 40px;
-            border-radius: 50px;
-            color: #33319F;
-            padding: 2%;
         }
         .button{
             border-radius: 50px;
@@ -198,40 +190,12 @@ $userid = $_SESSION['user']['username'];
             text-align: center;
             line-height: 20%;
         }
-
-        .aboutbutton{
-            border-radius: 50px;
-            height: 10%;
-            width: 24%;
-            padding-top: 16px;
-            background-color: #33319F;
-            font-size: medium;
-            margin-top: 0%;
-            margin-bottom:%;
-            margin-left: 10%;
-
-        }
-
-        .container{
-            padding-left: 5%;
-            float: left;
-            width: 40%;
-        }
-        #submit{
-            border-radius: 50px;
-            height: 8%;
-            width: 24%;
-            background-color: #33319F;
-            font-size: medium;
-            color: white;
-            margin-right: 10px;
-            float: left;
-        }
         #nav{
             background-color: #33319F;
             color: white;
             height: 50px;
             padding: 20px;
+            width: 100%;
         }
         .menu-item{
             padding-top: 15px;
@@ -245,46 +209,61 @@ $userid = $_SESSION['user']['username'];
         img{
             width: 30%;
             display: block;
-            margin: auto;
+            margin-bottom: 10px;
 
         }
         #footer {
             background-color: #33319F;
             color: white;
-            width: 98%;
-            height: 15%;
-            padding: 40px;
-            margin-top: 28%;
+            width: 100%;
+            height: 16%;
+            padding-top: 40px;
+            margin-top: 24.4%;
             text-align: center;
+        }
+        a:link {
+            color: white;
+        }
+        a:hover {
+            color: #DD5F76;
+        }
+        a {
+            color: white;
+        }
+        span {
+            width: 10%;
+        }
+        #logo{
+            height: 50px;
+            width: 50px;
+            float: left;
         }
     </style>
 </head>
 
 <body>
 <div id="nav">
-    <div id="logo"><span style='float: left'><img src="../../../Downloads/test%203/logo.png" id="logo"></span></div>
-    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php'> About Us</a> </div>
-    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/register.php'> Sign Up </a> </div>
-    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/why-us-cg/why-us.php'> Why Us? </a> </div>
-    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/daily-read-cg/daily-read.php'> Daily Read </a> </div>
-    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/topcafes.php'>Top Cafes </a> </div>
+    <div id="logo"><span style='float: left'><img src="logo.png" id="logo"></span></div>
+    <div class="menu-item"><a href='index.php'> Home </a> </div>
+    <div class="menu-item"><a href='about-us-cg%202/about.php'> About Us</a> </div>
+    <div class="menu-item"><a href='register.php'> Sign Up </a> </div>
+    <div class="menu-item"><a href='why-us-cg/why-us.php'> Why Us? </a> </div>
+    <div class="menu-item"><a href='daily-read-cg/daily-read.php'> Daily Read </a> </div>
+    <div class="menu-item"><a href='topcafes.php'>Top Cafes </a> </div>
+
 
     <?php
-    if(!empty($_SESSION['user']['username'])){
+    if(!empty($_SESSION["username"])){
         echo "<div id='logout'> <a href='logout.php'> log out</a></div>";
     }
     ?>
     <div id="login">
         <?php
-        if(empty($_SESSION['user']['username'])){
+        if(empty($_SESSION["username"])){
             echo "<a href='login2.php'><span style='color: #33319F'>log in</span></a>";
         }
         else{?>
-            Hi, <b><?php echo htmlspecialchars($userid);
-
-            ?></b> <?php }
-
-        ?>
+            Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> <?php }?>
     </div>
 </div>
 <br><br><br>
@@ -310,7 +289,8 @@ include("auth.php");
 
 <div class="button2"><a href="search.php"><span style='color: #33319F'>Search</span></a></div>
 <br>
-<div class="button2"><a href="about-us-cg%202/about.php"><span style='color: #33319F'>Explore</span></a></div>
+<div class="button2"><a href="about-us-cg%202/about.php"><span style='color: #33319F'>Explore</span><br>
+    </a></div>
 
 <div id="aboutus">
 
@@ -333,10 +313,10 @@ include("auth.php");
     <div  id="footer">
         Are you a coffee shop looking to be added to our database? Click below!
         <br><br>
-        <div class="adminbutton"><a href="http://webdev.iyaclasses.com/~slfinnig/acad276/admin-cg/editing-latteShare.php"><span style='color: #33319F'>Admin</span></a>
-        </div>
+        <div class="adminbutton"><a href="http://webdev.iyaclasses.com/~slfinnig/acad276/admin-cg/editing-latteShare.php"><span style='color: #33319F'>Admin</span></a></div>
         </div>
 </body>
+</html>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PF0NKREBNT"></script>
 <script>
@@ -346,4 +326,3 @@ include("auth.php");
 
     gtag('config', 'G-PF0NKREBNT');
 </script>
-</html>
