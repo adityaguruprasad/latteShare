@@ -271,7 +271,7 @@ include("auth.php");
         $currentrow = $results->fetch_assoc();
         $n = $currentrow['likes'];
 
-//mysqli_query($con, "INSERT INTO cafelist (likes) VALUES (1)");
+        mysqli_query($con, "INSERT INTO cafelist (likes) VALUES (1)");
         sql($db, "UPDATE cafelist SET likes=$n+1 WHERE id=$cafe_id");
 
             echo $n+1;
@@ -336,9 +336,9 @@ include("auth.php");
     while($currentrow = $results->fetch_assoc()) {
         echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . " |"
             . "</strong>  <a>" . $currentrow['outlet'] . " outlets".
-           " | ". $currentrow['seatingtype'] ." seating | " . "<span class='like fa fa-thumbs-o-up' data-id='" .  $currentrow['id'] . "'></span>" .
+           " | ". $currentrow['seatingtype'] ." seating | " . "<span class='like fa fa-thumbs-o-up' data-id='" .  $currentrow['cafe_id'] . "'></span>" .
 
-    "<span class=likes_count>" . $currentrow['likes'] . "likes</span>" .
+    "<span class=likes_count>" . $currentrow['likes'] . " likes</span>" .
 
     "<br style='clear:both;'>";
     if($counter==$end)
@@ -381,19 +381,16 @@ include("auth.php");
         $(document).ready(function(){
             // when the user clicks on like
             $('.like').on('click', function(){
-                var cafe_id = $(this).data('clicked', true);
-                $post = $(this);
+               // var cafe_id = $(this).data('cafe_id');
+               // $post = $(this);
 
-                if($('#element').data('clicked')) {
-                    alert('yes');
-                }
 
                 $.ajax({
-                    url: 'cgresults.php',
-                    type: 'post',
-                    data: {
-                        'liked': 1,
-                        'cafe_id': cafe_id
+                   // url: 'cgresults.php',
+                  //  type: 'post',
+                  //  data: {
+                       // 'liked': 1,
+                      //  'cafe_id': cafe_id
                     },
                     success: function(response){
                         $post.parent().find('span.likes_count').text(response + " likes");
