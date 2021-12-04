@@ -1,18 +1,8 @@
 <?php
-// Initialize the session
-session_start();
-
-// Check if the user is logged in, if not then redirect him to login page
-
-?>
-<?php
-
 $host = "webdev.iyaclasses.com";
 $userid = "mlchen";
 $userpw = "Acad275_Chen_7491505710";
 $db = "mlchen_commonGrounds";
-
-
 
 $mysql = new mysqli(
     $host,
@@ -25,15 +15,24 @@ if($mysql->connect_errno) {
     echo "db connection error : " . $mysql->connect_error;
     exit();
 }
+?>
+<?php
+// Initialize the session
+session_start();
+$userid = $_SESSION['user']['username'];
+
+// Check if the user is logged in, if not then redirect him to login page
 
 ?>
+
+
 <html>
 <head>
-    <title>Common Grounds search results</title>
+
+    <link rel="stylesheet" href="commgr-stylesheet.css">
+    <title>Common Grounds - Home</title>
+
     <style>
-        a:visited{
-            color: white;
-        }
         h3{
             text-align: center;
         }
@@ -49,10 +48,6 @@ if($mysql->connect_errno) {
             color: #33319F;
             font-size: 16pt;
             font-family: 'Montserrat', sans-serif;
-        }
-        form{
-            text-align: left;
-            margin-left: 40%;
         }
         #login{
             background-color: white;
@@ -106,7 +101,7 @@ if($mysql->connect_errno) {
             height: 40px;
             border-radius: 60px;
             border: #FDFAF1 1px solid;
-            margin-top: 50px;
+            margin-top: 0px;
             font-size: 14pt;
         }
 
@@ -146,16 +141,7 @@ if($mysql->connect_errno) {
             color: white;
             text-align: center;
         }
-        form{
-            border-radius: 50px;
-            border: #33319F 2px solid;
-            width: 70%;
-            height: 40%;
-            position: absolute;
-            top: 450px;
-            margin-left: 15%;
-            line-height: 1.1;
-        }
+
         .textbox{
             border: #33319F 1.5px solid;
             height: 40px;
@@ -165,15 +151,51 @@ if($mysql->connect_errno) {
         }
         .button{
             border-radius: 50px;
-            height: 2%;
-            width: 8%;
+            height: 5%;
+            width: 14%;
             margin: auto;
-            padding-top: 20px;
+            padding-top: 16px;
             background-color: #33319F;
             font-size: medium;
-            line-height: 3%;
+            text-align: center;
+        }
+        .button2{
+            border-radius: 50px;
+            border: #33319F 2px solid;
+            height: 8%;
+            width: 8%;
+            margin: auto;
+            padding: 1.2%;
+            font-size: medium;
+            text-align: center;
+            line-height: 7%;
+        }
+
+        .adminbutton{
+            border-radius: 50px;
+            height: 20%;
+            width: 14%;
+            margin: auto;
+            padding-top: 16px;
+            background-color: white;
+            color: #33319F;
+            font-size: medium;
+            text-align: center;
+            line-height: 20%;
+        }
+        .aboutbutton{
+            border-radius: 50px;
+            height: 10%;
+            width: 24%;
+            padding-top: 16px;
+            background-color: #33319F;
+            font-size: medium;
+            margin-top: 0%;
+            margin-bottom:%;
+            margin-left: 10%;
 
         }
+
         .container{
             padding-left: 5%;
             float: left;
@@ -194,31 +216,102 @@ if($mysql->connect_errno) {
             height: 50px;
             padding: 20px;
         }
-    </style>
-</head>
+        .menu-item{
+            padding-top: 15px;
+            font-size: 12pt;
+            margin-left: 15px;
+            margin-right: 15pt;
+            float: left;
+            display: block;
+            color: white;
+        }
+        img{
+            width: 30%;
+            display: block;
+            margin-bottom: 10px;
+
+        }
+        #footer {
+            background-color: #33319F;
+            color: white;
+            height: 100px;
+            padding: 20px;
+            margin-top: 56%;
+            text-align: center;
+        }
+
+        a:link {
+            color: #33319F;
+        }
+        a:hover {
+            color: #DD5F76;
+        }
+        a:visited {
+            clear: both;
+        }
+        span {
+            width: 10%;
+        }
+        #logo{
+            height: 50px;
+            width: 50px;
+            float: left;
+        }
+        #logout{
+
+            border-radius: 60px;
+            color: #DD5F76;
+            font-size: 14pt;
+            position: absolute;
+            right: 150px;
+            top: 25px;
+            text-align: center;
+            font-family: obviously, sans-serif;
+            height: 3%;
+            width: 6%;
+            margin: auto;
+            padding-top: 0px;
+            line-height: 3%;
+            border: white 1px solid;
+        }
+        .like{
+            float: left;
+            margin-top: -45px;
+            margin-left: 20px;
+        }
+        img {
+            width: 2%;
+        }
+</style>
+        </head>
+
 <body>
 <div id="nav">
-    <div id="logo"><img src="logo.png" id="logo"></div>
+    <div id="logo"><span style='float: left'><img src="logo.png" id="logo"></span></div>
+    <div class="menu-item"><a href='index.php'> <span style='color:white'> Home </a> </span></div>
+    <div class="menu-item"><a href='about-us-cg%202/about.php' > <span style='color:white'>About Us</a> </span></div>
+    <div class="menu-item"><a href='register.php'> <span style='color:white'>Sign Up</a> </span></div>
+    <div class="menu-item"><a href='why-us-cg/why-us.php'><span style='color:white'>Why Us?</a> </span> </div>
+    <div class="menu-item"><a href='daily-read-cg/daily-read.php'> <span style='color:white'>Daily Read</a> </span> </div>
+
+
     <?php
     if(!empty($_SESSION['user']['username'])){
-        echo "<div id='logout'> <a href='../../Downloads/test%202/logout.php'> log out</a></div>";
+        echo "<div id='logout'> <br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><a  href='logout.php'> <span style='color:#DD5F76'>log out</span></a></div>";
     }
     ?>
     <div id="login">
         <?php
         if(empty($_SESSION['user']['username'])){
-            echo "<a href='../../Downloads/test%202/login.php'><span style='color: #33319F'>log in</span></a>";
+            echo "<a href='login2.php'><span style='color: #33319F'>log in</span></a>";
         }
         else{?>
-            Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> <?php }?>
+            <a href="useracc.php" style="color:#DD5F76"><b><?php echo htmlspecialchars($_SESSION['user']["username"]); ?></b> </a><?php }?>
     </div>
 </div>
-<?php
-include("auth.php");
-?>
 
 <div id="container">
-    <h1> Search results <br> <div class="button"><a href="index.php"><span style='color: white'>Search Again</span></a></div><hr></h1>
+    <h1> Search results <br> <div class="button"><a href="search.php"><span style='color: white'>Search Again</span></a></div><hr></h1>
 
     <?php
     $temp1 = "SELECT outlet FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
@@ -308,25 +401,32 @@ include("auth.php");
 
 
     while($currentrow = $results->fetch_assoc()) {
+
         echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . " |"
-            . "</strong>  <a>" . $currentrow['outlet'] . " outlets".
-            " | ". $currentrow['seatingtype'] ." seating | </a> </div>" .
+            . "</strong>  <a>" . $currentrow['location'] .
+            "|". $currentrow['outlet'] . " outlets".
+            "|". $currentrow['rewardprogram'] . " it has reward program".
+            "|". $currentrow['internet'] . "it has Wifi".
+            " | ". $currentrow['seatingtype'] ." seating | </a> </div>"?>
+        <img src="heart.png" alt="heart icon">
+        <?php
+        echo
+            "<form action='like-cafe.php' class='like'><input type='hidden' name='id' value='" . $currentrow['cafe_id'] . "'><input type='submit' value='like' name='like'></form>" .
 
             "<br style='clear:both;'>";
         if($counter==$end)
         { break; }
-
         $counter++;
     }
 
 
     if($start != 1) {
-        echo "<a href='cgresults.php?start=" . ($start - 5) .
+        echo "<a href='recentsearch.php?start=" . ($start - 5) .
             $searchstring .
-            "'>Previous Records</a> | ";
+            "' >Previous Records</a> | ";
     }
     if($end < $results->num_rows) {
-        echo "<a href='cgresults.php?start=" . ($start + 5) .
+        echo "<a href='recentsearch.php?start=" . ($start + 5) .
             $searchstring .
             "'>Next Records</a>";
     }

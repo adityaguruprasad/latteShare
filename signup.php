@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="commgr-stylesheet.css">
+    <link rel="stylesheet" href="test 3/commgr-stylesheet.css">
     <title>Common Grounds - Sign Up</title>
     <style>
         body{

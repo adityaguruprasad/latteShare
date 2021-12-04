@@ -1,8 +1,8 @@
 <?php
 $host = "webdev.iyaclasses.com";
-$userid = "omitowoj";
-$userpw = "Acad275_Omitowoju_2813341101";
-$db = "omitowoj_commongrounds";
+$userid = "mlchen";
+$userpw = "Acad275_Chen_7491505710";
+$db = "mlchen_commonGrounds";
 
 $mysql = new mysqli(
     $host,
@@ -19,7 +19,6 @@ if($mysql->connect_errno) {
 <?php
 // Initialize the session
 session_start();
-$userid = $_SESSION['user']['username'];
 
 // Check if the user is logged in, if not then redirect him to login page
 
@@ -29,12 +28,20 @@ $userid = $_SESSION['user']['username'];
 <html>
 <head>
 
-    <link rel="stylesheet" href="../1123%20login/commgr-stylesheet.css">
-    <title>Common Grounds - Home</title>
+    <link rel="stylesheet" href="../commgr-stylesheet.css">
+    <title>Common Grounds - Account</title>
 
     <style>
-        a:visited{
+        p{
+            text-align: center;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        a{
             color: white;
+        }
+        a:visited{
+            clear: both;
         }
         h3{
             text-align: center;
@@ -52,10 +59,6 @@ $userid = $_SESSION['user']['username'];
             font-size: 16pt;
             font-family: 'Montserrat', sans-serif;
         }
-        form{
-            text-align: left;
-            margin-left: 40%;
-        }
         #login{
             background-color: white;
             border-radius: 60px;
@@ -69,26 +72,29 @@ $userid = $_SESSION['user']['username'];
             height: 3%;
             width: 6%;
             margin: auto;
-            padding-top: 12px;
-            line-height: 2%;
+            padding-top: 20px;
+            line-height: 3%;
         }
         #logout{
-            width: 80px;
-            height: 18px;
-            padding: 10px;
-            border: white 1px solid;
+
             border-radius: 60px;
-            color: white;
+            color: #DD5F76;
             font-size: 14pt;
             position: absolute;
-            right: 200px;
+            right: 150px;
             top: 25px;
             text-align: center;
             font-family: obviously, sans-serif;
+            height: 3%;
+            width: 6%;
+            margin: auto;
+            padding-top: 20px;
+            line-height: 3%;
+            border: white 1px solid;
         }
         h1{
             text-align: center;
-            margin-top: 150px;
+            margin-top: 50px;
 
         }
         #description{
@@ -127,7 +133,7 @@ $userid = $_SESSION['user']['username'];
             height: 40%;
             position: absolute;
             left: 0%;
-            top: 80%;
+            top: 100%;
             padding: 2%;
             float: left;
             color: white;
@@ -140,7 +146,7 @@ $userid = $_SESSION['user']['username'];
             height: 40%;
             position: absolute;
             left: 50%;
-            top: 80%;
+            top: 100%;
             padding: 2%;
             border-top: #33319F;
             float: left;
@@ -148,57 +154,27 @@ $userid = $_SESSION['user']['username'];
             color: white;
             text-align: center;
         }
-        form{
-            border-radius: 50px;
-            border: #33319F 2px solid;
-            width: 70%;
-            height: 40%;
-            position: absolute;
-            top: 450px;
-            margin-left: 15%;
-            line-height: 1.1;
-        }
         .textbox{
             border: #33319F 1.5px solid;
             height: 40px;
             border-radius: 50px;
             color: #33319F;
             padding: 2%;
+            width: 50%;
+            margin-left: 25%;
         }
-        .button{
+        #button{
             border-radius: 50px;
-            height: 10%;
-            width: 24%;
-            margin: auto;
-            padding-top: 16px;
+            height: 30px;
+            width: 100px;
+            padding-top: 5px;
+            text-align: center;
+            color: white;
             background-color: #33319F;
             font-size: medium;
-            text-align: center;
+            margin-top: 20px;
         }
 
-        .button2{
-            border-radius: 50px;
-            border: #33319F 2px solid;
-            height: 4%;
-            width: 10%;
-            margin: auto;
-            padding-top: 10px;
-            font-size: medium;
-            text-align: center;
-        }
-
-        .adminbutton{
-            border-radius: 50px;
-            height: 20%;
-            width: 14%;
-            margin: auto;
-            padding-top: 16px;
-            background-color: white;
-            color: #33319F;
-            font-size: medium;
-            text-align: center;
-            line-height: 20%;
-        }
         .aboutbutton{
             border-radius: 50px;
             height: 10%;
@@ -223,8 +199,9 @@ $userid = $_SESSION['user']['username'];
             width: 24%;
             background-color: #33319F;
             font-size: medium;
-            font-family: 'Montserrat', sans-serif;
             color: white;
+            margin-right: 10px;
+            float: left;
         }
         #nav{
             background-color: #33319F;
@@ -241,14 +218,16 @@ $userid = $_SESSION['user']['username'];
             display: block;
             color: white;
         }
-        #footer {
-            background-color: #33319F;
-            color: white;
-            width: 98%;
-            height: 100px;
-            padding: 40px;
-            margin-top: 28%;
-            text-align: center;
+        img{
+            width: 30%;
+            display: block;
+            margin-bottom: 10px;
+
+        }
+        #logo{
+            height: 50px;
+            width: 50px;
+            float: left;
         }
     </style>
 </head>
@@ -256,80 +235,78 @@ $userid = $_SESSION['user']['username'];
 <body>
 <div id="nav">
     <div id="logo"><span style='float: left'><img src="logo.png" id="logo"></span></div>
-        <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php'> About Us</a> </div>
-        <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/register.php'> Sign Up </a> </div>
-        <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/why-us-cg/why-us.php'> Why Us? </a> </div>
-        <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/daily-read-cg/daily-read.php'> Daily Read </a> </div>
-        <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/topcafes.php'>Top Cafes </a> </div>
+    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php'> About Us</a> </div>
+    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/register.php'> Sign Up </a> </div>
+    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/why-us-cg/why-us.php'> Why Us? </a> </div>
+    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/daily-read-cg/daily-read.php'> Daily Read </a> </div>
+    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/topcafes.php'>Top Cafes </a> </div>
 
-    </div>
     <?php
-    if(!empty($_SESSION["username"])){
+    if(!empty($_SESSION['user']['username'])){
         echo "<div id='logout'> <a href='logout.php'> log out</a></div>";
     }
     ?>
     <div id="login">
         <?php
-        if(empty($_SESSION["username"])){
+        if(empty($_SESSION['user']['username'])){
             echo "<a href='login2.php'><span style='color: #33319F'>log in</span></a>";
         }
         else{?>
-            Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> <?php }?>
+            <a href="useracc.php" style='color:#DD5F76'>Hi, <b><?php echo htmlspecialchars($_SESSION['user']['username']);
+
+                    ?></b> </a> <?php }
+
+        ?>
     </div>
 </div>
-<br><br><br>
+<div id="button">
+   <a href="edit-useracc.php"> Edit</a>
+</div>
 <?php
 include("auth.php");
 ?>
-<div id="title-box"><img src="https://raw.githubusercontent.com/adityaguruprasad/latteShare/main/cg-title.png" id="title"></div>
-
-<div id="description">
-    is a database service that helps our users find the best cafes around them for their workflow. Whether it be having enough
-    sitting, WiFi, or just overall vibes of the space, Common Grounds caters to your needs to find the perfect space for you!
-
-</div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div class="button2"><a href="http://webdev.iyaclasses.com/~abramsa/acad276/latteShare-main/search.php"><span style='color: #33319F'>Search</span></a></div>
-<br>
-<div class="button2"><a href="http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php"><span style='color: #33319F'>Explore</span></a></div>
-
-<div id="aboutus">
-
-    <h2>MORE ABOUT US:</h2>
-    Common Grounds is a user-based service that takes both your input and our own <br> research to recommend cafes and restaurants suitable for you to do work. We  <br> strive to introduce our users new, fun cafes and restaurants near them.
-
-    <br><br>What to learn more? Contact us below.
-    <br><br>
-    <div class="button"><a href="http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php"><span style='color: white'>Contact Us</span></a></div>
-</div>
-<div id="getstarted">
-
-    <h2>GET STARTED:</h2>
-    Excited by our service? Signing up is easy and quick. Before you know it you will be exploring all the cafes near you!
-
-    <br><br>Click below to sign up and get started using our services.
-    <br><br>
-    <div class="button"><a href="http://webdev.iyaclasses.com/~mlchen/acad276/test/register.php"><span style='color: white'>Sign Up</span></a></div>
-</div>
-
-
-<div  id="footer">
-    Are you a coffee shop looking to be added to our database? Click below!
-    <br><br>
-    <div class="adminbutton"><a href="http://webdev.iyaclasses.com/~slfinnig/acad276/admin-cg/editing-latteShare.php"><span style='color: #33319F'>Admin</span></a>
-</div>
-</div>
+<?php
+    $temp1 = "SELECT outlet FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+    $outletSql = $mysql->query($temp1);
+    while($currentrow = mysqli_fetch_array($outletSql)) {
+        $outlet = $currentrow['outlet'];
+    }
+    $temp2 = "SELECT seatingtype FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+    $seatingSql = $mysql->query($temp2);
+    while($currentrow = mysqli_fetch_array($seatingSql)) {
+        $seating = $currentrow['seatingtype'];
+    }
+    $temp = "SELECT internet FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+    $internetSql = $mysql->query($temp);
+    while($currentrow = mysqli_fetch_array($internetSql)) {
+        $internet = $currentrow['internet'];
+    }
+    $temp = "SELECT location FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+    $locationSql = $mysql->query($temp);
+    while($currentrow = mysqli_fetch_array($locationSql)) {
+        $location = $currentrow['location'];
+    }
+    $temp = "SELECT rewardprogram FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+    $rewardSql = $mysql->query($temp);
+    while($currentrow = mysqli_fetch_array($rewardSql)) {
+        $reward = $currentrow['rewardprogram'];
+    }
+    ?>
+<h1>Hi, <?php echo $_SESSION['user']['username']?></h1>
+<h3>Username: </h3>
+<p><?php echo $_SESSION['user']['username']?></p>
+<h3>Email: </h3>
+<p><?php echo $_SESSION['user']['email']?></p>
+<h3>Most Recent Search: </h3>
+<p><?php echo "In your most recent search, you searched for ".$outlet." outlet types, ".$seating." seating types, ".$internet.
+    " Internet availability, ".$location. " locations, and ".$reward." reward programs. <br><br>";
+    $results = $mysql->query($sql);?>
+    <br>
+    <span style="a{
+            color: #33319F;
+        }"><a href="recentsearch.php">See results again?</a></span>
+</p>
 </body>
-
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PF0NKREBNT"></script>
 <script>
@@ -339,5 +316,4 @@ include("auth.php");
 
     gtag('config', 'G-PF0NKREBNT');
 </script>
-</html>
 </html>

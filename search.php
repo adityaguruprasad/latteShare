@@ -1,8 +1,8 @@
 <?php
 $host = "webdev.iyaclasses.com";
-$userid = "omitowoj";
-$userpw = "Acad275_Omitowoju_2813341101";
-$db = "omitowoj_commongrounds";
+$userid = "mlchen";
+$userpw = "Acad275_Chen_7491505710";
+$db = "mlchen_commonGrounds";
 
 $mysql = new mysqli(
     $host,
@@ -19,6 +19,7 @@ if($mysql->connect_errno) {
 <?php
 // Initialize the session
 session_start();
+$userid = $_SESSION['user']['username'];
 
 // Check if the user is logged in, if not then redirect him to login page
 
@@ -174,6 +175,17 @@ session_start();
             font-size: medium;
             text-align: center;
         }
+        .button2{
+            border-radius: 50px;
+            border: #33319F 2px solid;
+            height: 8%;
+            width: 8%;
+            margin: auto;
+            padding: 1.2%;
+            font-size: medium;
+            text-align: center;
+            line-height: 7%;
+        }
 
         .adminbutton{
             border-radius: 50px;
@@ -229,6 +241,12 @@ session_start();
             display: block;
             color: white;
         }
+        img{
+            width: 30%;
+            display: block;
+            margin-bottom: 10px;
+
+        }
         #footer {
             background-color: #33319F;
             color: white;
@@ -237,27 +255,67 @@ session_start();
             margin-top: 56%;
             text-align: center;
         }
+
+        a:link {
+            color: #33319F;
+        }
+        a:hover {
+            color: #DD5F76;
+        }
+        a:visited {
+            clear: both;
+        }
+        span {
+            width: 10%;
+        }
+        #logo{
+            height: 50px;
+            width: 50px;
+            float: left;
+        }
+        #logout{
+
+            border-radius: 60px;
+            color: #DD5F76;
+            font-size: 14pt;
+            position: absolute;
+            right: 150px;
+            top: 25px;
+            text-align: center;
+            font-family: obviously, sans-serif;
+            height: 3%;
+            width: 6%;
+            margin: auto;
+            padding-top: 0px;
+            line-height: 3%;
+            border: white 1px solid;
+        }
+
     </style>
 </head>
 
 <body>
 <div id="nav">
     <div id="logo"><span style='float: left'><img src="logo.png" id="logo"></span></div>
-    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php'> About Us</a> </div>
-    <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/register.php'> Sign Up </a> </div>
+    <div class="menu-item"><a href='index.php'> <span style='color:white'> Home </a> </span></div>
+    <div class="menu-item"><a href='about-us-cg%202/about.php' > <span style='color:white'>About Us</a> </span></div>
+    <div class="menu-item"><a href='register.php'> <span style='color:white'>Sign Up</a> </span></div>
+    <div class="menu-item"><a href='why-us-cg/why-us.php'><span style='color:white'>Why Us?</a> </span> </div>
+    <div class="menu-item"><a href='daily-read-cg/daily-read.php'> <span style='color:white'>Daily Read</a> </span> </div>
+
 
     <?php
-    if(!empty($_SESSION["username"])){
-        echo "<div id='logout'> <a href='logout.php'> log out</a></div>";
+    if(!empty($_SESSION['user']['username'])){
+        echo "<div id='logout'> <br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><a  href='logout.php'> <span style='color:#DD5F76'>log out</span></a></div>";
     }
     ?>
     <div id="login">
         <?php
-        if(empty($_SESSION["username"])){
-            echo "<a href='login.php'><span style='color: #33319F'>log in</span></a>";
+        if(empty($_SESSION['user']['username'])){
+            echo "<a href='login2.php'><span style='color: #33319F'>log in</span></a>";
         }
         else{?>
-            Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> <?php }?>
+            <a href="useracc.php" style="color:#DD5F76"><b><?php echo htmlspecialchars($_SESSION['user']["username"]); ?></b> </a><?php }?>
     </div>
 </div>
 <h2>Search</h2>
@@ -372,6 +430,14 @@ session_start();
             ?>
         </select>
         <br>
+        <?php
+        if(!empty($_SESSION['user']['username'])){
+            ?>
+
+        <a href="recentsearch.php" style="color:#33319F"> View Previous Search</a>
+            <?php
+        }
+        ?>
         <input type="submit" id="submit">
     </div>
 
