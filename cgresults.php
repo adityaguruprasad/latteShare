@@ -1,16 +1,8 @@
 <?php
-
-if(empty($_REQUEST['location'])) {
-    echo "Please go through search page. (or redirect)";
-    exit();
-}
-
 $host = "webdev.iyaclasses.com";
-$userid = "omitowoj";
-$userpw = "Acad275_Omitowoju_2813341101";
-$db = "omitowoj_commongrounds";
-
-
+$userid = "mlchen";
+$userpw = "Acad275_Chen_7491505710";
+$db = "mlchen_commonGrounds";
 
 $mysql = new mysqli(
     $host,
@@ -23,17 +15,24 @@ if($mysql->connect_errno) {
     echo "db connection error : " . $mysql->connect_error;
     exit();
 }
+?>
+<?php
+// Initialize the session
+session_start();
+$userid = $_SESSION['user']['username'];
 
-
+// Check if the user is logged in, if not then redirect him to login page
 
 ?>
+
+
 <html>
 <head>
-    <title>Common Grounds search results</title>
+
+    <link rel="stylesheet" href="commgr-stylesheet.css">
+    <title>Common Grounds - Home</title>
+
     <style>
-        a:visited{
-            color: white;
-        }
         h3{
             text-align: center;
         }
@@ -49,10 +48,6 @@ if($mysql->connect_errno) {
             color: #33319F;
             font-size: 16pt;
             font-family: 'Montserrat', sans-serif;
-        }
-        form{
-            text-align: left;
-            margin-left: 40%;
         }
         #login{
             background-color: white;
@@ -106,7 +101,7 @@ if($mysql->connect_errno) {
             height: 40px;
             border-radius: 60px;
             border: #FDFAF1 1px solid;
-            margin-top: 50px;
+            margin-top: 0px;
             font-size: 14pt;
         }
 
@@ -146,16 +141,7 @@ if($mysql->connect_errno) {
             color: white;
             text-align: center;
         }
-        form{
-            border-radius: 50px;
-            border: #33319F 2px solid;
-            width: 70%;
-            height: 40%;
-            position: absolute;
-            top: 450px;
-            margin-left: 15%;
-            line-height: 1.1;
-        }
+
         .textbox{
             border: #33319F 1.5px solid;
             height: 40px;
@@ -165,15 +151,51 @@ if($mysql->connect_errno) {
         }
         .button{
             border-radius: 50px;
-            height: 2%;
-            width: 8%;
+            height: 5%;
+            width: 14%;
             margin: auto;
-            padding-top: 20px;
+            padding-top: 16px;
             background-color: #33319F;
             font-size: medium;
-            line-height: 3%;
+            text-align: center;
+        }
+        .button2{
+            border-radius: 50px;
+            border: #33319F 2px solid;
+            height: 8%;
+            width: 8%;
+            margin: auto;
+            padding: 1.2%;
+            font-size: medium;
+            text-align: center;
+            line-height: 7%;
+        }
+
+        .adminbutton{
+            border-radius: 50px;
+            height: 20%;
+            width: 14%;
+            margin: auto;
+            padding-top: 16px;
+            background-color: white;
+            color: #33319F;
+            font-size: medium;
+            text-align: center;
+            line-height: 20%;
+        }
+        .aboutbutton{
+            border-radius: 50px;
+            height: 10%;
+            width: 24%;
+            padding-top: 16px;
+            background-color: #33319F;
+            font-size: medium;
+            margin-top: 0%;
+            margin-bottom:%;
+            margin-left: 10%;
 
         }
+
         .container{
             padding-left: 5%;
             float: left;
@@ -194,53 +216,104 @@ if($mysql->connect_errno) {
             height: 50px;
             padding: 20px;
         }
-        body {
-            padding-top: 100px;
+        .menu-item{
+            padding-top: 15px;
+            font-size: 12pt;
+            margin-left: 15px;
+            margin-right: 15pt;
+            float: left;
+            display: block;
+            color: white;
+        }
+        img{
+            width: 30%;
+            display: block;
+            margin-bottom: 10px;
+
+        }
+        #footer {
+            background-color: #33319F;
+            color: white;
+            height: 100px;
+            padding: 20px;
+            margin-top: 56%;
+            text-align: center;
         }
 
-        .post {
-            width: 30%;
-            margin: 10px auto;
-            border: 1px solid #cbcbcb;
-            padding: 5px 10px 0px 10px;
+        a:link {
+            color: #33319F;
         }
-        .like, .unlike, .likes_count {
-            color: blue;
+        a:hover {
+            color: #DD5F76;
         }
-        .hide {
-            display: none;
+        a:visited {
+            clear: both;
         }
-        .fa-thumbs-up, .fa-thumbs-o-up {
-            transform: rotateY(-180deg);
-            font-size: 1.3em;
+        span {
+            width: 10%;
         }
+        #logo{
+            height: 50px;
+            width: 50px;
+            float: left;
+        }
+        #logout{
+
+            border-radius: 60px;
+            color: #DD5F76;
+            font-size: 14pt;
+            position: absolute;
+            right: 150px;
+            top: 25px;
+            text-align: center;
+            font-family: obviously, sans-serif;
+            height: 3%;
+            width: 6%;
+            margin: auto;
+            padding-top: 0px;
+            line-height: 3%;
+            border: white 1px solid;
+        }
+        .like{
+            float: left;
+            margin-top: -45px;
+            margin-left: 20px;
+        }
+        img {
+            width: 2%;
+        }
+
 
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
+
 <body>
 <div id="nav">
-    <div id="logo"><img src="logo.png" id="logo"></div>
+    <div id="logo"><span style='float: left'><img src="logo.png" id="logo"></span></div>
+    <div class="menu-item"><a href='index.php'> <span style='color:white'> Home </a> </span></div>
+    <div class="menu-item"><a href='about-us-cg%202/about.php' > <span style='color:white'>About Us</a> </span></div>
+    <div class="menu-item"><a href='register.php'> <span style='color:white'>Sign Up</a> </span></div>
+    <div class="menu-item"><a href='why-us-cg/why-us.php'><span style='color:white'>Why Us?</a> </span> </div>
+    <div class="menu-item"><a href='daily-read-cg/daily-read.php'> <span style='color:white'>Daily Read</a> </span> </div>
+
+
     <?php
-    if(!empty($_SESSION["username"])){
-        echo "<div id='logout'> <a href='logout.php'> log out</a></div>";
+    if(!empty($_SESSION['user']['username'])){
+        echo "<div id='logout'> <br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><a  href='logout.php'> <span style='color:#DD5F76'>log out</span></a></div>";
     }
     ?>
     <div id="login">
         <?php
-        if(empty($_SESSION["username"])){
-            echo "<a href='login.php'><span style='color: #33319F'>log in</span></a>";
+        if(empty($_SESSION['user']['username'])){
+            echo "<a href='login2.php'><span style='color: #33319F'>log in</span></a>";
         }
         else{?>
-            Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> <?php }?>
+            <a href="useracc.php" style="color:#DD5F76"><b><?php echo htmlspecialchars($_SESSION['user']["username"]); ?></b> </a><?php }?>
     </div>
 </div>
-<?php
-include("auth.php");
-?>
 
 <div id="container">
-    <h1> Search results <br> <div class="button"><a href="welcome.php"><span style='color: white'>Search Again</span></a></div><hr></h1>
+    <h1> Search results <br> <div class="button"><a href="search.php"><span style='color: white'>Search Again</span></a></div><hr></h1>
 
     <?php
 
@@ -263,36 +336,6 @@ include("auth.php");
     }
 
     $results = $mysql->query($sql);
-
-    if (isset($_REQUEST['liked'])) {
-        $cafe_id = $_REQUEST['cafe_id'];
-        $results = $mysql->query($sql);
-//$results = mysql($db, "SELECT * FROM cafelist WHERE id=$cafe_id");
-        $currentrow = $results->fetch_assoc();
-        $n = $currentrow['likes'];
-
-        mysqli_query($con, "INSERT INTO cafelist (likes) VALUES (1)");
-        sql($db, "UPDATE cafelist SET likes=$n+1 WHERE id=$cafe_id");
-
-            echo $n+1;
-            exit();
-       }
-    //$cafe_id = $_REQUEST['cafe_id'];
-    //$sql = "SELECT * FROM cafelist WHERE" . $_REQUEST['cafe_id'] . " = cafe_id";
-    //if (isset($_POST['unliked'])) {
-
-   // $results = $mysql->query($sql);
-
-    //$currentrow = $results->fetch_assoc();
-  //  $n = $currentrow['likes'];
-
-    // mysqli_query($con, "DELETE FROM likes WHERE cafe_id=$cafe_id AND userid=1");
-    //mysqli_query($con, "UPDATE posts SET likes=$n-1 WHERE id=$postid");
-
-    // echo $n-1;
-    // exit();
-    //}
-
     if(!$results) {
         echo "<hr>Your SQL:<br> " . $sql . "<br><br>";
         echo "SQL Error: " . $mysql->error . "<hr>";
@@ -328,41 +371,29 @@ include("auth.php");
          "&rating=" . $_REQUEST["rating"] .
             "&internet=" . $_REQUEST["internet"] .
             "&outlet=" . $_REQUEST["outlet"] .
-         "&rewardprogram=" . $_REQUEST["rewardprogram"]  ;
+         "&rewardprogram=" . $_REQUEST["rewardprogram"] ;
 
     //    echo "<hr>" . $searchstring . "<hr>";
 
-
     while($currentrow = $results->fetch_assoc()) {
+
         echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . " |"
-            . "</strong>  <a>" . $currentrow['outlet'] . " outlets".
-           " | ". $currentrow['seatingtype'] ." seating | " . "<span class='like fa fa-thumbs-o-up' data-id='" .  $currentrow['cafe_id'] . "'></span>" .
+            . "</strong>  <a>" . $currentrow['location'] .
+            "|". $currentrow['outlet'] . " outlets".
+            "|". $currentrow['rewardprogram'] . " it has reward program".
+            "|". $currentrow['internet'] . "it has Wifi".
+            " | ". $currentrow['seatingtype'] ." seating | </a> </div>"?>
+        <img src="heart.png" alt="heart icon">
+        <?php
+        echo
+            "<form action='like-cafe.php' class='like'><input type='hidden' name='id' value='" . $currentrow['cafe_id'] . "'><input type='submit' value='like' name='like'></form>" .
 
-    "<span class=likes_count>" . $currentrow['likes'] . " likes</span>" .
+            "<br style='clear:both;'>";
+        if($counter==$end)
+        { break; }
+        $counter++;
+    }
 
-    "<br style='clear:both;'>";
-    if($counter==$end)
-    { break; }
-
-    $counter++; }
-   ?>
-<!--determine if user has already liked this post
-           // $results = mysqli_query($db, "SELECT * FROM likes WHERE userid=1 AND postid=".$row['id']."");
-
-    //if (mysqli_num_rows($results) == 1 ):
-        user already likes post -->
-        <!--<span class="unlike fa fa-thumbs-up" data-id="<?php //echo $row['id']; ?>"></span>
-        <span class="like hide fa fa-thumbs-o-up" data-id="<?php //echo $row['id']; ?>"></span>-->
-    <?php ?>
-        <!-- user has not yet liked post -->
-
-        <!--<span class="unlike hide fa fa-thumbs-up" data-id="<?//php echo $row['id']; ?>"></span>-->
-
-    <?php //endif ?>
-
-
-
-<?php
 
     if($start != 1) {
         echo "<a href='cgresults.php?start=" . ($start - 5) .
@@ -374,34 +405,28 @@ include("auth.php");
             $searchstring .
             "'>Next Records</a>";
     }
+    echo "<br><br>";
 
+    if(!empty($_SESSION['user']['username'])){
+    $recentsql = "UPDATE users4 SET " .
+        " location = '" . $_REQUEST["location"] . "' , " .
+        " seatingtype = '" . $_REQUEST["seatingtype"] . "' , " .
+        " internet = '" . $_REQUEST["internet"] . "' , " .
+        " outlet = '" . $_REQUEST["outlet"] . "' , " .
+        " rewardprogram = '" . $_REQUEST["rewardprogram"] . "' " .
+        " WHERE username = '" . $_SESSION['user']['username']."'";
+
+$results = $mysql->query($recentsql);
+if(empty($_SESSION['user']['username'])){
+echo "<br>Empty.";
+}
+if(!$results){
+echo "<br>User error.";
+exit();
+}
+}
     ?>
-    <script src="http://iyawebdev.com/jquery.js"></script>
-    <script>
-        $(document).ready(function(){
-            // when the user clicks on like
-            $('.like').on('click', function(){
-               // var cafe_id = $(this).data('cafe_id');
-               // $post = $(this);
 
-
-                $.ajax({
-                   // url: 'cgresults.php',
-                  //  type: 'post',
-                  //  data: {
-                       // 'liked': 1,
-                      //  'cafe_id': cafe_id
-                    },
-                    success: function(response){
-                        $post.parent().find('span.likes_count').text(response + " likes");
-                        $post.addClass('hide');
-                        $post.siblings().removeClass('hide');
-                    }
-                });
-            });
-
-        });
 </div>
 
-</body>
-</html>
+</body></html>
