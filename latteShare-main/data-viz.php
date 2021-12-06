@@ -4,8 +4,6 @@ $userid = "mlchen";
 $userpw = "Acad275_Chen_7491505710";
 $db = "mlchen_commonGrounds";
 
-
-
 $mysql = new mysqli(
     $host,
     $userid,
@@ -123,7 +121,7 @@ $mysql = new mysqli(
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/why-us-cg/why-us.php'> Why Us? </a> </div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/daily-read-cg/daily-read.php'> Daily Read </a> </div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/topcafes.php'>Top Cafes </a> </div>
-    <div class="button"><a href="login.php">login </a></div>
+    <div class="button"><a href="login2.php">login </a></div>
 
 
 </div>
