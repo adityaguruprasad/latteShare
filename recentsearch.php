@@ -339,6 +339,10 @@ $userid = $_SESSION['user']['username'];
     while($currentrow = mysqli_fetch_array($rewardSql)) {
         $reward = $currentrow['rewardprogram'];
     }
+        if($reward == ''){
+            echo "You do not have any recent searches.";
+            exit();
+        }
 
     $sql = "SELECT * FROM cgView2 WHERE 1=1";
     if($outlet != "ALL") {
@@ -356,8 +360,8 @@ $userid = $_SESSION['user']['username'];
     if($reward != "ALL") {
         $sql .=		" AND rewardprogram = '" . $reward . "'";
     }
-    echo "In your most recent search, you searched for ".$outlet." outlet types, ".$seating." seating types, ".$internet.
-    " Internet availability, ".$location. " locations, and ".$reward." reward programs. Here are your results: <br><br>";
+
+
     $results = $mysql->query($sql);
 
     if(!$results) {
@@ -365,12 +369,6 @@ $userid = $_SESSION['user']['username'];
         echo "SQL Error: " . $mysql->error . "<hr>";
         exit();
     }
-
-    echo "<em>Your results returned <strong>" .
-        $results->num_rows .
-        "</strong> results.</em>";
-    echo "<br><br>";
-
 
     if(empty($_REQUEST["start"])) {
         $start=1;
@@ -399,9 +397,13 @@ $userid = $_SESSION['user']['username'];
 
     //    echo "<hr>" . $searchstring . "<hr>";
 
-
+    echo "In your most recent search, you searched for ".$outlet." outlet types, ".$seating." seating types, ".$internet.
+        " Internet availability, ".$location. " locations, and ".$reward." reward programs. Here are your results: <br><br>";
+    echo "<em>Your results returned <strong>" .
+        $results->num_rows .
+        "</strong> results.</em>";
+    echo "<br><br>";
     while($currentrow = $results->fetch_assoc()) {
-
         echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . " |"
             . "</strong>  <a>" . $currentrow['location'] .
             "|". $currentrow['outlet'] . " outlets".
