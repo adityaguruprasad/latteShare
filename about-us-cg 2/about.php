@@ -221,6 +221,6 @@ $userid = $_SESSION['user']['username'];
 <br>
 <h2 style="text-align: center; margin: auto">Our Team</h2>
 <br> <br>
-<div class="team"><img src="Group%204.png" alt="Team Photos" style="text-align: center; margin: auto"></div><br><br>
+<div class="team"><img src="Group%204.png" alt="Team Photos" style="text-align: center; margin: auto; width: 80%"></div><br><br>
 </body>
 </html>
