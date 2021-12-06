@@ -12,6 +12,24 @@ $mysql = new mysqli(
     $db
 );
 
+// Initialize the session
+session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+
+?>
+<?php
+$sql = "SELECT * FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
+$results = $mysql->query($sql);
+while($currentrow = mysqli_fetch_array($results)) {
+    $accsecurity = $currentrow['user_type'];
+}
+if($accsecurity != 'admin'){
+    echo "You don't have access to the admin page.";
+    exit();
+}
+
+
 if($mysql->connect_errno) {
     echo "db connection error : " . $mysql->connect_error;
     exit();

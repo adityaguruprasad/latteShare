@@ -105,6 +105,47 @@
             display: block;
         }
 
+        @media only screen and (max-width: 350px ) {
+
+            h1{
+                font-size: 70pt;
+            }
+            #by{
+                font-size: 20pt;
+            }
+
+            #nav{
+                padding-left: 0px;
+                padding-right: 0px;
+                height: 20%;
+            }
+
+            .menu-item{
+                padding-top: 15px;
+                font-size: 35px;
+                margin-left: 15px;
+                margin-right: 1px;
+                float: left;
+                display: block;
+                color: white;
+            }
+
+            #logo {
+                visibility: hidden;
+                width: 2px;
+            }
+
+            #login {
+                width: 25px;
+            }
+
+            body{
+                font-size: 40pt;
+            }
+
+
+        }
+
 
     </style>
 </head>
@@ -116,7 +157,7 @@
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/why-us-cg/why-us.php'> Why Us? </a> </div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/daily-read-cg/daily-read.php'> Daily Read </a> </div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/topcafes.php'>Top Cafes </a> </div>
-    <div class="button" <span style='color: white'><a href="login.php">login </a></span></div>
+    <div class="button" <span style='color: white'><a href="login2.php">login </a></span></div>
 
 
 </div>
