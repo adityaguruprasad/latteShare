@@ -20,6 +20,10 @@ $mysql = new mysqli(
 if($mysql->connect_errno) {
     echo "db connection error : " . $mysql->connect_error;
     exit();
+
+// Initialize the session
+    session_start();
+    
 }
 
 //mysql_query("
@@ -41,4 +45,4 @@ if(!results){
 echo "You liked a cafe!";
 ?>
 
-<a href="cgresults.php">Back to search results</a>
+<a href="recentsearch.php">Back to search results</a>
