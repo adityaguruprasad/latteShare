@@ -285,7 +285,7 @@ include("auth.php");
 
     while($currentrow = $results->fetch_assoc()) {
 
-        echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . " |"
+        echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . "<br>"
             . "</strong>  <a>" . $currentrow['outlet'] . " outlets".
             " | ". $currentrow['seatingtype'] ." seating | </a> </div>" .
             "<form action='like-cafe.php' class='like'><input type='hidden' name='id' value='" . $currentrow['cafe_id'] . "'><input type='submit' value='like' name='like'></form>" .

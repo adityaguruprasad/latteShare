@@ -283,7 +283,42 @@ $userid = $_SESSION['user']['username'];
             width: 2%;
         }
 
+        @media only screen and (max-width: 350px ) {
 
+            #nav{
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+
+            .menu-item{
+                padding-top: 15px;
+                font-size: 35px;
+                margin-left: 15px;
+                margin-right: 1px;
+                float: left;
+                display: block;
+                color: white;
+            }
+
+            #logo {
+                visibility: hidden;
+                width: 2px;
+            }
+
+            #login {
+                width: 25px;
+            }
+
+            #container {
+                font-size: 160%;
+            }
+
+          #heart {
+              width: 4%;
+          }
+
+
+        }
     </style>
 </head>
 
@@ -377,16 +412,16 @@ $userid = $_SESSION['user']['username'];
 
     while($currentrow = $results->fetch_assoc()) {
 
-        echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . " |"
-            . "</strong>  <a>" . $currentrow['location'] .
-            "|". $currentrow['outlet'] . " outlets".
-            "|". $currentrow['rewardprogram'] . " it has reward program".
-            "|". $currentrow['internet'] . "it has Wifi".
-            " | ". $currentrow['seatingtype'] ." seating | </a> </div>"?>
-        <img src="heart.png" alt="heart icon">
+        echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . "</strong>"
+            . " | " . " Location: ". $currentrow['location'] .
+            " | ". "Outlets: ". $currentrow['outlet'] .
+            " | ".  "Rewards: ". $currentrow['rewardprogram'] .
+            " | ".  "Wifi: ". $currentrow['internet'] .
+            " | ".  "Seating: ". $currentrow['seatingtype'] . "</div>"?>
+        <img src="heart.png" alt="heart icon" id="heart" >
         <?php
         echo
-            "<form action='like-cafe.php' class='like'><input type='hidden' name='id' value='" . $currentrow['cafe_id'] . "'><input type='submit' value='like' name='like'></form>" .
+            "<form action='like-cafe.php' class='like' ><input type='hidden' name='id' value='" . $currentrow['cafe_id'] . "'><input type='submit' value='like' name='like'  ></form>" .
 
             "<br style='clear:both;'>";
         if($counter==$end)
