@@ -22,10 +22,10 @@ if($mysql->connect_errno) {
     exit();
 
 // Initialize the session
-    session_start();
-    
-}
 
+
+}
+session_start();
 //mysql_query("
 // UPDATE cafelist
 //SET likes = likes + 1
@@ -42,7 +42,16 @@ if(!results){
     exit();
 }
 
-echo "You liked a cafe!";
-?>
+echo "You liked the cafe ";
+$sql = "SELECT * FROM cgView2 WHERE cafe_id=".$_REQUEST['id'];
+$results = $mysql->query($sql);
+while($currentrow = $results->fetch_assoc()) {
 
-<a href="recentsearch.php">Back to search results</a>
+    echo   $currentrow['cafename'];
+}
+echo "! ";
+
+if(!empty($_SESSION['user']['username'])) {
+    echo "<a href='recentsearch.php'>Back to search results</a>";
+}
+?>
