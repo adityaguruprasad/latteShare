@@ -3,10 +3,9 @@ $internet = $_REQUEST["internet"];
 
 
 $host = "webdev.iyaclasses.com";
-$userid = "omitowoj";
-$userpw = "Acad275_Omitowoju_2813341101";
-$db = "omitowoj_commongrounds";
-
+$userid = "mlchen";
+$userpw = "Acad275_Chen_7491505710";
+$db = "mlchen_commonGrounds";
 
 $mysql = new mysqli(
     $host,

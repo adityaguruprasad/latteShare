@@ -1,28 +1,20 @@
 <?php
-// Initialize the session
-session_start();
-
-// Check if the user is logged in, if not then redirect him to login page
-
-?>
-<?php
 
 if(empty($_REQUEST['location'])) {
-    echo "Please go through search page. (or redirect)";
-    exit();
+    //echo "Please go through search page. (or redirect)";
+    // exit();
 }
 
-
 $host = "webdev.iyaclasses.com";
-$userid = "mlchen";
-$userpw = "Acad275_Chen_7491505710";
-$db = "mlchen_commonGrounds";
+$user = "omitowoj";
+$userpw = "Acad275_Omitowoju_2813341101";
+$db = "omitowoj_commongrounds";
 
 
 
 $mysql = new mysqli(
     $host,
-    $userid,
+    $user,
     $userpw,
     $db
 );
@@ -31,6 +23,8 @@ if($mysql->connect_errno) {
     echo "db connection error : " . $mysql->connect_error;
     exit();
 }
+
+
 
 ?>
 <html>
@@ -152,7 +146,16 @@ if($mysql->connect_errno) {
             color: white;
             text-align: center;
         }
-
+        form{
+            border-radius: 50px;
+            border: #33319F 2px solid;
+            width: 70%;
+            height: 40%;
+            position: absolute;
+            top: 450px;
+            margin-left: 15%;
+            line-height: 1.1;
+        }
         .textbox{
             border: #33319F 1.5px solid;
             height: 40px;
@@ -191,36 +194,53 @@ if($mysql->connect_errno) {
             height: 50px;
             padding: 20px;
         }
-        .like{
-            float: left;
-            margin-top: -3px;
+        body {
+            padding-top: 100px;
         }
+
+        .post {
+            width: 30%;
+            margin: 10px auto;
+            border: 1px solid #cbcbcb;
+            padding: 5px 10px 0px 10px;
+        }
+        .like, .unlike, .likes_count {
+            color: blue;
+        }
+        .hide {
+            display: none;
+        }
+        .fa-thumbs-up, .fa-thumbs-o-up {
+            transform: rotateY(-180deg);
+            font-size: 1.3em;
+        }
+
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
 <div id="nav">
     <div id="logo"><img src="logo.png" id="logo"></div>
     <?php
-    if(!empty($_SESSION['user']['username'])){
+    if(!empty($_SESSION["username"])){
         echo "<div id='logout'> <a href='logout.php'> log out</a></div>";
     }
     ?>
     <div id="login">
         <?php
-        if(empty($_SESSION['user']['username'])){
+        if(empty($_SESSION["username"])){
             echo "<a href='login.php'><span style='color: #33319F'>log in</span></a>";
         }
         else{?>
             Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> <?php }?>
     </div>
-
 </div>
 <?php
 include("auth.php");
 ?>
 
 <div id="container">
-    <h1> Search results <br> <div class="button"><a href="index.php"><span style='color: white'>Search Again</span></a></div><hr></h1>
+    <h1> Search results <br> <div class="button"><a href="welcome.php"><span style='color: white'>Search Again</span></a></div><hr></h1>
 
     <?php
 
@@ -243,13 +263,50 @@ include("auth.php");
     }
 
     $results = $mysql->query($sql);
+
+    if (isset($_REQUEST['liked'])) {
+        $cafe_id = $_REQUEST['cafe_id'];
+//$results = mysql($db, "SELECT * FROM cafelist WHERE id=$cafe_id");
+        $results = mysqli_query($db, "SELECT * FROM cafelist WHERE id=$cafe_id");
+        $currentrow = mysqli_fetch_array($results);
+        $n = $currentrow['likes'];
+
+        mysqli_query($db, "INSERT INTO likes (userid, cafe_id) VALUES (1,$cafe_id)");
+        mysqli_query($db, "UPDATE cafelist SET likes=$n+1 WHERE id=$cafe_id");
+
+        echo $n+1;
+        exit();
+    }
+    //$cafe_id = $_REQUEST['cafe_id'];
+    //$sql = "SELECT * FROM cafelist WHERE" . $_REQUEST['cafe_id'] . " = cafe_id";
+    if (isset($_REQUEST['unliked'])) {
+        $cafe_id = $_REQUEST['cafe_id'];
+        $results = mysqli_query($db, "SELECT * FROM cafelist WHERE id=$cafe_id");
+        // $results = sql($db, "SELECT * FROM cafelist WHERE id=$cafe_id");
+        $currentrow = mysqli_fetch_array($results);
+        $n = $currentrow['likes'];
+
+        // $results = $mysql->query($sql);
+
+        //$currentrow = $results->fetch_assoc();
+        //  $n = $currentrow['likes'];
+
+        sql($db, "DELETE FROM likes WHERE cafe_id=$cafe_id AND userid=1");
+        sql($db, "UPDATE cafelist SET likes=$n-1 WHERE id=$cafe_id");
+
+        echo $n-1;
+        exit();
+    }
+
+    $cafelist= mysqli_query($db, "SELECT * FROM cafelist");
+
     if(!$results) {
         echo "<hr>Your SQL:<br> " . $sql . "<br><br>";
         echo "SQL Error: " . $mysql->error . "<hr>";
         exit();
     }
 
-    echo "<em>Your results returned <strong>" .
+    echo "<em>Your search returned <strong>" .
         $results->num_rows .
         "</strong> results.</em>";
     echo "<br><br>";
@@ -278,24 +335,59 @@ include("auth.php");
         "&rating=" . $_REQUEST["rating"] .
         "&internet=" . $_REQUEST["internet"] .
         "&outlet=" . $_REQUEST["outlet"] .
-        "&rewardprogram=" . $_REQUEST["rewardprogram"] ;
+        "&rewardprogram=" . $_REQUEST["rewardprogram"]  ;
 
     //    echo "<hr>" . $searchstring . "<hr>";
 
 
     while($currentrow = $results->fetch_assoc()) {
-
+        $results = $mysql->query($sql);
         echo   "<div class='title'> <strong> " . $counter . ")" . $currentrow['cafename'] . " |"
             . "</strong>  <a>" . $currentrow['outlet'] . " outlets".
-            " | ". $currentrow['seatingtype'] ." seating | </a> </div>" .
-            "<form action='like-cafe.php' class='like'><input type='hidden' name='id' value='" . $currentrow['cafe_id'] . "'><input type='submit' value='like' name='like'></form>" .
+            " | ". $currentrow['seatingtype'] ." seating | " ;
 
-            "<br style='clear:both;'>";
+        //$results = sql($db, "SELECT * FROM likes WHERE userid=1 AND cafe_id='". $currentrow['id']."'");
+
+        if (mysqli_num_rows($results) == 1 ): ?>
+            <!-- user already likes post -->
+            <span class="unlike fa fa-thumbs-up" data-id="<?php echo $currentrow['id']; ?>"></span>
+            <span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $currentrow['id']; ?>"></span>
+        <?php else: ?>
+            <!-- user has not yet liked post -->
+            <span class="like fa fa-thumbs-o-up" data-id="<?php echo $currentrow['id']; ?>"></span>
+            <span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $currentrow['id']; ?>"></span>
+        <?php endif ?>
+
+        <span class="likes_count"><?php echo $currentrow['likes']; ?> likes</span>
+
+        <!--"<span class='like fa fa-thumbs-o-up' data-id='" .  $currentrow['cafe_id'] . "'></span>" .
+
+//"<span class=likes_count>" . $currentrow['likes'] . " likes</span>" .-->
+
+        <br style='clear:both;'>
+        <?php
         if($counter==$end)
         { break; }
         $counter++;
-    }
+    } ?>
 
+    <!--determine if user has already liked this post
+               // $results = mysqli_query($db, "SELECT * FROM likes WHERE userid=1 AND postid=".$row['id']."");
+
+        //if (mysqli_num_rows($results) == 1 ):
+            user already likes post -->
+    <!--<span class="unlike fa fa-thumbs-up" data-id="<?php //echo $row['id']; ?>"></span>
+        <span class="like hide fa fa-thumbs-o-up" data-id="<?php //echo $row['id']; ?>"></span>-->
+    <?php ?>
+    <!-- user has not yet liked post -->
+
+    <!--<span class="unlike hide fa fa-thumbs-up" data-id="<?//php echo $row['id']; ?>"></span>-->
+
+    <?php //endif ?>
+
+
+
+    <?php
 
     if($start != 1) {
         echo "<a href='cgresults.php?start=" . ($start - 5) .
@@ -307,26 +399,53 @@ include("auth.php");
             $searchstring .
             "'>Next Records</a>";
     }
-    echo "<br><br>";
 
-    $recentsql = "UPDATE users4 SET " .
-        " location = '" . $_REQUEST["location"] . "' , " .
-        " seatingtype = '" . $_REQUEST["seatingtype"] . "' , " .
-        " internet = '" . $_REQUEST["internet"] . "' , " .
-        " outlet = '" . $_REQUEST["outlet"] . "' , " .
-        " rewardprogram = '" . $_REQUEST["rewardprogram"] . "' " .
-        " WHERE username = '" . $_SESSION['user']['username']."'";
-
-    $results = $mysql->query($recentsql);
-    if(empty($_SESSION['user']['username'])){
-        echo "<br>Empty.";
-    }
-    if(!$results){
-        echo "<br>User error.";
-        exit();
-    }
     ?>
+    <script src="http://iyawebdev.com/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            // when the user clicks on like
+            $('.like').on('click', function(){
+                var cafe_id = $(this).data('id');
+                $post = $(this);
 
+                $.ajax({
+                    url: 'cgresults.php',
+                    type: 'post',
+                    data: {
+                        'liked': 1,
+                        'cafe_id': cafe_id
+                    },
+                    success: function(response){
+                        $post.parent().find('span.likes_count').text(response + " likes");
+                        $post.addClass('hide');
+                        $post.siblings().removeClass('hide');
+                    }
+                });
+            });
+
+            // when the user clicks on unlike
+            $('.unlike').on('click', function(){
+                var cafe_id = $(this).data('id');
+                $post = $(this);
+
+                $.ajax({
+                    url: 'cgresults.php',
+                    type: 'post',
+                    data: {
+                        'unliked': 1,
+                        'cafe_id': cafe_id
+                    },
+                    success: function(response){
+                        $post.parent().find('span.likes_count').text(response + " likes");
+                        $post.addClass('hide');
+                        $post.siblings().removeClass('hide');
+                    }
+                });
+            });
+        });
+    </script>
 </div>
 
-</body></html>
+</body>
+</html>
