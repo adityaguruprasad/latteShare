@@ -213,10 +213,19 @@ $userid = $_SESSION['user']['username'];
         }
 
         .container{
-            padding-left: 5%;
             float: left;
-            width: 40%;
+            width: 20%;
+            margin-left: 30%;
+            margin-bottom: 5%;
         }
+
+        .container1{
+            float: left;
+            width: 25%;
+            margin-left: 0%;
+        }
+
+
         #submit{
             border-radius: 50px;
             height: 8%;
@@ -366,7 +375,7 @@ $userid = $_SESSION['user']['username'];
 
         </select>
     </div>
-    <div class="container">
+    <div class="container1">
         WiFi:
         <select name="internet" class="textbox"  id="internet">
             <option value="ALL">Any Internet Availability</option>
@@ -409,6 +418,7 @@ $userid = $_SESSION['user']['username'];
             ?>
         </select>
         <br><br>
+
         Rewards:
         <select name="rewardprogram" class="textbox" id="rewardprogram">
             <option value="ALL">Any Rewards</option>
@@ -429,7 +439,7 @@ $userid = $_SESSION['user']['username'];
             }
             ?>
         </select>
-        <br>
+    <br>
         <?php
         if(!empty($_SESSION['user']['username'])){
             ?>
@@ -438,7 +448,10 @@ $userid = $_SESSION['user']['username'];
             <?php
         }
         ?>
-        <input type="submit" id="submit">
     </div>
+
+    <div style="width: 35%">
+    <input type="submit" id="submit" style="margin-left: 125%" >
+        </div>
 
 </form>
