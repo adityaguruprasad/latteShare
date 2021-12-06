@@ -21,14 +21,17 @@ if($mysql->connect_errno) {
 session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
-
+if(empty($_SESSION['user']['username'])) {
+    echo "You are not logged in. <a href='login2.php'>Log in here</a>";
+    exit();
+}
 ?>
 
 
 <html>
 <head>
 
-    <link rel="stylesheet" href="../commgr-stylesheet.css">
+    <link rel="stylesheet" href="commgr-stylesheet.css">
     <title>Common Grounds - Account</title>
 
     <style>
@@ -247,16 +250,10 @@ session_start();
     }
     ?>
     <div id="login">
-        <?php
-        if(empty($_SESSION['user']['username'])){
-            echo "<a href='login2.php'><span style='color: #33319F'>log in</span></a>";
-        }
-        else{?>
+
             <a href="useracc.php" style='color:#DD5F76'>Hi, <b><?php echo htmlspecialchars($_SESSION['user']['username']);
 
-                    ?></b> </a> <?php }
-
-        ?>
+                    ?></b> </a>
     </div>
 </div>
 <div id="button">
@@ -264,6 +261,8 @@ session_start();
 </div>
 <?php
 include("auth.php");
+
+
 ?>
 <?php
     $temp1 = "SELECT outlet FROM users4 WHERE username = '".$_SESSION['user']['username']."'";
@@ -302,9 +301,7 @@ include("auth.php");
     " Internet availability, ".$location. " locations, and ".$reward." reward programs. <br><br>";
     $results = $mysql->query($sql);?>
     <br>
-    <span style="a{
-            color: #33319F;
-        }"><a href="recentsearch.php">See results again?</a></span>
+<a href="recentsearch.php" style="color: #33319F;">See results again?</a>
 </p>
 </body>
 <!-- Global site tag (gtag.js) - Google Analytics -->
