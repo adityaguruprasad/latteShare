@@ -98,18 +98,17 @@ if($_REQUEST["confirm"] != "yes") {
 <?php
     exit();
 } // end of if statement
-    $host = "webdev.iyaclasses.com";
-    $userid = "omitowoj";
-    $userpw = "Acad275_Omitowoju_2813341101";
-    $db = "omitowoj_commongrounds";
+$host = "webdev.iyaclasses.com";
+$userid = "mlchen";
+$userpw = "Acad275_Chen_7491505710";
+$db = "mlchen_commonGrounds";
 
-
-    $mysql = new mysqli(
-        $host,
-        $userid,
-        $userpw,
-        $db
-    );
+$mysql = new mysqli(
+    $host,
+    $userid,
+    $userpw,
+    $db
+);
 
     if($mysql->connect_errno) {
         echo "db connection error : " . $mysql->connect_error;
