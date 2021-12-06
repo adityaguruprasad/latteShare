@@ -82,39 +82,39 @@ if(empty($_REQUEST["id"])){
 
 <div class="boxes">
     <h3>Cafe Name</h3>
-    <img src="add.png" alt="add"><a href="add-name.php" target="_blank">Add</a><br>
-    <img src="edit.png" alt="edit">Edit<br>
-    <img src="trash.png" alt="delete">Delete
+    <img src="../admin-cg/add.png" alt="add"><a href="add-name.php" target="_blank">Add</a><br>
+    <img src="../admin-cg/edit.png" alt="edit">Edit<br>
+    <img src="../admin-cg/trash.png" alt="delete">Delete
 </div>
 <div class="boxes">
     <h3>Location</h3>
-    <img src="add.png" alt="add">Add<br>
-    <img src="edit.png" alt="edit">Edit<br>
-    <img src="trash.png" alt="delete">Delete
+    <img src="../admin-cg/add.png" alt="add">Add<br>
+    <img src="../admin-cg/edit.png" alt="edit">Edit<br>
+    <img src="../admin-cg/trash.png" alt="delete">Delete
 </div>
 <div class="boxes">
     <h3>Outlet Availability</h3>
-    <img src="add.png" alt="add">Add<br>
-    <img src="edit.png" alt="edit">Edit<br>
-    <img src="trash.png" alt="delete">Delete
+    <img src="../admin-cg/add.png" alt="add">Add<br>
+    <img src="../admin-cg/edit.png" alt="edit">Edit<br>
+    <img src="../admin-cg/trash.png" alt="delete">Delete
 </div>
 <div class="boxes">
     <h3>Internet Availability</h3>
-    <img src="add.png" alt="add">Add<br>
-    <img src="edit.png" alt="edit">Edit<br>
-    <img src="trash.png" alt="delete">Delete
+    <img src="../admin-cg/add.png" alt="add">Add<br>
+    <img src="../admin-cg/edit.png" alt="edit">Edit<br>
+    <img src="../admin-cg/trash.png" alt="delete">Delete
 </div>
 <div class="boxes">
     <h3>Seating Type</h3>
-    <img src="add.png" alt="add">Add<br>
-    <img src="edit.png" alt="edit">Edit<br>
-    <img src="trash.png" alt="delete">Delete
+    <img src="../admin-cg/add.png" alt="add">Add<br>
+    <img src="../admin-cg/edit.png" alt="edit">Edit<br>
+    <img src="../admin-cg/trash.png" alt="delete">Delete
 </div>
 <div class="boxes">
     <h3>Order Ahead</h3>
-    <img src="add.png" alt="add">Add<br>
-    <img src="edit.png" alt="edit">Edit<br>
-    <img src="trash.png" alt="delete">Delete
+    <img src="../admin-cg/add.png" alt="add">Add<br>
+    <img src="../admin-cg/edit.png" alt="edit">Edit<br>
+    <img src="../admin-cg/trash.png" alt="delete">Delete
 </div>
 
 

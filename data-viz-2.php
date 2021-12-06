@@ -11,13 +11,20 @@ $mysql = new mysqli(
     $userid,
     $userpw,
     $db
-); ?>
+);
+
+if($mysql->connect_errno) {
+    echo "db connection error : " . $mysql->connect_error;
+    exit();
+}
+
+?>
 
 <html>
 <head>
     <style>
         #nav{
-            background-color: #DD5F76;
+            background-color: #33319F;
             color: white;
             height: 50px;
             padding: 20px;
@@ -93,7 +100,7 @@ $mysql = new mysqli(
             width: 100px;
             margin: auto;
             padding-top: 16px;
-            background-color: #33319F;
+            background-color: white;
             font-size: 12pt;
             float: right;
             display: block;
@@ -102,6 +109,9 @@ $mysql = new mysqli(
         a{
             color: white;
         }
+        .button a:link{
+            color:#33319F;
+        }
         .menu-item{
             padding-top: 15px;
             font-size: 12pt;
@@ -109,6 +119,7 @@ $mysql = new mysqli(
             margin-right: 15pt;
             float: left;
             display: block;
+            color: white
         }
 
 
@@ -117,22 +128,23 @@ $mysql = new mysqli(
 </head>
 <body>
 <div id="nav">
-    <div id="logo"><img src="../admin-cg/logo.png" id="logo"></div>
+    <div id="logo"><img src="../latteShare/logo.png" id="logo"></div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/about-us-cg/about.php'> About Us</a> </div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/register.php'> Sign Up </a> </div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/why-us-cg/why-us.php'> Why Us? </a> </div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~slfinnig/acad276/daily-read-cg/daily-read.php'> Daily Read </a> </div>
     <div class="menu-item"><a href='http://webdev.iyaclasses.com/~omitowoj/group/topcafes.php'>Top Cafes </a> </div>
-    <div class="button"><a href="login.php">login </a></div>
+    <div class="button"><a href="login2.php">login </a></div>
 
 
 </div>
 <br>
 <div id="title">
     <h1>Most Liked Cafes</h1>
+
     <?php
 
-    $sql_cafe = "SELECT likes, cafename FROM cgView2 ORDER BY likes DESC LIMIT 5";
+    $sql_cafe = "SELECT likes, cafename FROM cgView2 ORDER BY likes DESC LIMIT 5;";
     $cafe_results = $mysql->query($sql_cafe);
     $counter = 1;
     while($currentrow = $cafe_results->fetch_assoc()) {
@@ -165,11 +177,11 @@ $mysql = new mysqli(
     <script>
 
         const data = {
-            labels:   [ <?php echo "'". $likes1 . "'"?>,
-                <?php echo "'". $likes2 . "'" ?>,
-                <?php echo "'". $likes3 . "'" ?> ,
-                <?php echo "'". $likes4 . "'" ?>,
-                <?php echo "'". $likes5 . "'"?>
+            labels:   [ <?php echo '"'. $likes1 . '"'?>,
+                <?php echo '"'. $likes2 . '"' ?>,
+                <?php echo '"'. $likes3 . '"'?> ,
+                <?php echo '"'. $likes4 . '"' ?>,
+                <?php echo '"'. $likes5 . '"'?>
             ]
             ,
             datasets: [{
