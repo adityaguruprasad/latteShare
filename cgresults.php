@@ -283,7 +283,7 @@ $userid = $_SESSION['user']['username'];
             width: 2%;
         }
 
-        @media only screen and (max-width: 350px ) {
+        @media only screen and (max-width: 550px ) {
 
             #nav{
                 padding-left: 0px;
@@ -313,9 +313,9 @@ $userid = $_SESSION['user']['username'];
                 font-size: 160%;
             }
 
-          #heart {
-              width: 4%;
-          }
+            #heart {
+                width: 4%;
+            }
 
 
         }
@@ -403,10 +403,10 @@ $userid = $_SESSION['user']['username'];
 
     $searchstring = "&location=" . $_REQUEST["location"] .
         "&seatingtype=" . $_REQUEST["seatingtype"] .
-         "&rating=" . $_REQUEST["rating"] .
-            "&internet=" . $_REQUEST["internet"] .
-            "&outlet=" . $_REQUEST["outlet"] .
-         "&rewardprogram=" . $_REQUEST["rewardprogram"] ;
+        "&rating=" . $_REQUEST["rating"] .
+        "&internet=" . $_REQUEST["internet"] .
+        "&outlet=" . $_REQUEST["outlet"] .
+        "&rewardprogram=" . $_REQUEST["rewardprogram"] ;
 
     //    echo "<hr>" . $searchstring . "<hr>";
 
@@ -443,23 +443,23 @@ $userid = $_SESSION['user']['username'];
     echo "<br><br>";
 
     if(!empty($_SESSION['user']['username'])){
-    $recentsql = "UPDATE users4 SET " .
-        " location = '" . $_REQUEST["location"] . "' , " .
-        " seatingtype = '" . $_REQUEST["seatingtype"] . "' , " .
-        " internet = '" . $_REQUEST["internet"] . "' , " .
-        " outlet = '" . $_REQUEST["outlet"] . "' , " .
-        " rewardprogram = '" . $_REQUEST["rewardprogram"] . "' " .
-        " WHERE username = '" . $_SESSION['user']['username']."'";
+        $recentsql = "UPDATE users4 SET " .
+            " location = '" . $_REQUEST["location"] . "' , " .
+            " seatingtype = '" . $_REQUEST["seatingtype"] . "' , " .
+            " internet = '" . $_REQUEST["internet"] . "' , " .
+            " outlet = '" . $_REQUEST["outlet"] . "' , " .
+            " rewardprogram = '" . $_REQUEST["rewardprogram"] . "' " .
+            " WHERE username = '" . $_SESSION['user']['username']."'";
 
-$results = $mysql->query($recentsql);
-if(empty($_SESSION['user']['username'])){
-echo "<br>Empty.";
-}
-if(!$results){
-echo "<br>User error.";
-exit();
-}
-}
+        $results = $mysql->query($recentsql);
+        if(empty($_SESSION['user']['username'])){
+            echo "<br>Empty.";
+        }
+        if(!$results){
+            echo "<br>User error.";
+            exit();
+        }
+    }
     ?>
 
 </div>

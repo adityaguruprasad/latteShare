@@ -196,6 +196,7 @@ if($accsecurity != 'admin'){
 
 <div id="main-menu"><br>
     <h1>Admin Main Menu</h1>
+    <h2><a href="../analytics.html"><span style="color: #33319F"> View Google Analytics</span></a></h2>
 </div>
 
 <div class="boxes">
