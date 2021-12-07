@@ -297,7 +297,25 @@ $userid = $_SESSION['user']['username'];
             body{
                 font-size: 40pt;
             }
-
+            #getstarted{
+                visibility: hidden;
+                height: 0px;
+            }
+            #aboutus{
+                visibility: hidden;
+                height: 0px;
+            }
+            .button2{
+                border-radius: 50px;
+                border: #33319F 2px solid;
+                height: 20%;
+                width: 20%;
+                margin: auto;
+                padding: 2%;
+                font-size: medium;
+                text-align: center;
+                line-height: 10%;
+            }
 
         }
     </style>
