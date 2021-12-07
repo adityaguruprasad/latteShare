@@ -299,6 +299,43 @@ $userid = $_SESSION['user']['username'];
             line-height: 3%;
             border: white 1px solid;
         }
+        @media only screen and (max-width: 550px ) {
+
+            #nav{
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+
+
+            .menu-item{
+                padding-top: 15px;
+                font-size: 35px;
+                margin-left: 15px;
+                margin-right: 1px;
+                float: left;
+                display: block;
+                color: white;
+            }
+
+            #logo {
+                visibility: hidden;
+                width: 2px;
+            }
+
+            #login {
+                width: 25px;
+            }
+
+            #container {
+                font-size: 160%;
+            }
+
+            #heart {
+                width: 4%;
+            }
+
+
+        }
 
     </style>
 </head>
