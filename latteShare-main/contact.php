@@ -187,6 +187,64 @@ if($mysql->connect_errno) {
                 height: 50px;
                 padding: 20px;
             }
+            @media only screen and (max-width: 550px ) {
+
+                h1{
+                    font-size: 70pt;
+                }
+                #by{
+                    font-size: 20pt;
+                }
+
+                #nav{
+                    padding-left: 0px;
+                    padding-right: 0px;
+                    height: 20%;
+                }
+
+                .menu-item{
+                    padding-top: 15px;
+                    font-size: 35px;
+                    margin-left: 15px;
+                    margin-right: 1px;
+                    float: left;
+                    display: block;
+                    color: white;
+                }
+
+                #logo {
+                    visibility: hidden;
+                    width: 2px;
+                }
+
+                #login {
+                    width: 25px;
+                }
+
+                body{
+                    font-size: 40pt;
+                }
+                #getstarted{
+                    visibility: hidden;
+                    height: 0px;
+                }
+                #aboutus{
+                    visibility: hidden;
+                    height: 0px;
+                }
+                .button2{
+                    border-radius: 50px;
+                    border: #33319F 2px solid;
+                    height: 20%;
+                    width: 20%;
+                    margin: auto;
+                    padding: 2%;
+                    font-size: medium;
+                    text-align: center;
+                    line-height: 10%;
+                }
+
+            }
         </style>
     </head>
 <body>
